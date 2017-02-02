@@ -34,7 +34,7 @@ MINICONDA = https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.s
 
 MPI_CPPFLAGS = /usr/include/mpi
 MPI_LDFLAGS = /usr/lib
-MPI_CXXLIB = mpich++
+MPI_CXXLIB = mpi++
 MPI_LIB = mpi
 
 # For BLAS/LAPACK, we use the conda-installed MKL
