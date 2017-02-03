@@ -58,6 +58,7 @@ help :
 
 
 script : $(CONFIG_FILE) $(TOOLS) $(SCRIPT)
+	@echo "" >/dev/null
 
 
 Dockerfile_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile.template
