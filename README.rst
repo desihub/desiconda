@@ -14,67 +14,48 @@ regular installs and building docker images.
 Configuration
 ----------------
 
-For normal installs, create or edit a file in the "conf_normal" directory.
-This file defines compiler options, install prefix, version string, etc for
-all the dependencies.  See existing files for examples.
+Create or edit a file in the "conf" subdirectory that is named after the 
+system you are building on.  This file will define compilers, flags, etc.
+Optionally create files with the same name and the ".module" and ".sh"
+suffixes.  These optional files should contain any modulefile and shell 
+commands needed to set up the environment.  See existing files for 
+examples.
 
-Also edit a corresponding file in the "conf_normal_init" directory that
-contains a module file snippet
+To create a config for a docker image, the config file must be prefixed
+with "docker-".
+
+
+Generate the Script
+-----------------------
+
+Set the CONFIG, PREFIX, and (optionally) VERSION environment variables.
+Then create the script with::
+
+    $> make script
+
+To clean up all generated scripts, do::
+
+    $> make clean
+
+For normal installs, this creates an install script and corresponding
+module files.  For docker builds, a Dockerfile is created.
 
 
 Installation
 ------------
 
-You can install these tools in a variety of ways.  Here are several that may be of interest:
+For normal installs, simply run the install script.  This installs the
+software and modulefile, as well as a module version file named
+".version_$VERSION" in the module install directory.  You can manually
+move this into place if and when you want to make that the default
+version.
 
-1.  Manually running from the git checkout.  Add the "bin" directory to your $PATH environment variable and add the "py" directory to your $PYTHONPATH environment variable.
-2.  Install (and uninstall) a symlink to your live git checkout::
+For docker installs, run docker build from the same directory as the
+generated Dockerfile, so that the path to data files can be found.
 
-        $>  python setup.py develop --prefix=/path/to/somewhere
-        $>  python setup.py develop --prefix=/path/to/somewhere --uninstall
-
-3.  Install a fixed version of the tools::
-
-        $>  python setup.py install --prefix=/path/to/somewhere
-
-
-Versioning
-----------
-
-If you have tagged a version and wish to set the package version based on your current git location::
-
-    $>  python setup.py version
-
-And then install as usual.
-
-Full Documentation
-------------------
-
-Please visit `desispec on Read the Docs`_
-
-.. image:: https://readthedocs.org/projects/desispec/badge/?version=latest
-    :target: http://desispec.readthedocs.org/en/latest/
-    :alt: Documentation Status
-
-.. _`desispec on Read the Docs`: http://desispec.readthedocs.org/en/latest/
-
-Travis Build Status
--------------------
-
-.. image:: https://img.shields.io/travis/desihub/desispec.svg
-    :target: https://travis-ci.org/desihub/desispec
-    :alt: Travis Build Status
-
-
-Test Coverage Status
---------------------
-
-.. image:: https://coveralls.io/repos/desihub/desispec/badge.svg?service=github
-    :target: https://coveralls.io/github/desihub/desispec
-    :alt: Test Coverage Status
 
 License
 -------
 
-desispec is free software licensed under a 3-clause BSD-style license. For details see
+desiconda is free software licensed under a 3-clause BSD-style license. For details see
 the ``LICENSE.rst`` file.
