@@ -17,6 +17,10 @@ ifndef VERSION
   VERSION := "$(gitdesc).dev$(gitcnt)"
 endif
 
+# Make seems to delete these...
+
+.PRECIOUS : $(wildcard conf/*)
+
 # Config related files
 
 CONFIG_FILE := conf/$(CONFIG)

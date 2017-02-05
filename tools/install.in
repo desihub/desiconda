@@ -6,6 +6,12 @@ if [ -e "@CONFFILE@.sh" ]; then
     source @CONFFILE@.sh
 fi
 
+# Script directory
+
+pushd $(dirname $0) > /dev/null
+topdir=$(pwd)
+popd > /dev/null
+
 # Install DESI dependencies from source.
 
 mkdir -p @CONDA_PREFIX@/bin
@@ -50,7 +56,13 @@ conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 
 @fftw@
 
-# Install BOOST.
+# Install BOOST.  Copy patch if needed.
+
+if [ ! -e rules/patch_boost ]; then
+    # this is an out-of-source build
+    mkdir -p rules
+    cp ${topdir}/rules/patch_boost ./rules/
+fi
 
 @boost@
 

@@ -39,7 +39,7 @@ MPI_LIB = mpich
 
 # For BLAS/LAPACK, use MKL
 
-BLAS = -L/usr/common/software/intel/compilers_and_libraries_2017.0.064/linux/mkl/lib/intel64 -lmkl_rt -fopenmp -lpthread -lmemkind -ljemalloc -lm -ldl
+BLAS = -L/usr/common/software/intel/compilers_and_libraries_2017.0.064/linux/mkl/lib/intel64 -lmkl_rt -fopenmp -lpthread -lmemkind -lm -ldl
 LAPACK = 
 
 # Boost toolchain name
