@@ -1,16 +1,16 @@
 #!/bin/bash
 
-# Initialize environment
-
-if [ -e "@CONFFILE@.sh" ]; then
-    source @CONFFILE@.sh
-fi
-
 # Script directory
 
 pushd $(dirname $0) > /dev/null
 topdir=$(pwd)
 popd > /dev/null
+
+# Initialize environment
+
+if [ -e "${topdir}/@CONFFILE@.sh" ]; then
+    source "${topdir}/@CONFFILE@.sh"
+fi
 
 # Install DESI dependencies from source.
 

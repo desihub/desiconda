@@ -32,8 +32,8 @@ MINICONDA = https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.s
 
 # Use Cray MPICH
 
-MPI_CPPFLAGS = /opt/cray/mpt/default/gni/mpich-gnu/5.1/include
-MPI_LDFLAGS = /opt/cray/mpt/default/gni/mpich-gnu/5.1/lib
+MPI_CPPFLAGS = /opt/cray/pe/mpt/default/gni/mpich-gnu/5.1/include
+MPI_LDFLAGS = /opt/cray/pe/mpt/default/gni/mpich-gnu/5.1/lib
 MPI_CXXLIB = mpichcxx
 MPI_LIB = mpich
 

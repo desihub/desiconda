@@ -58,7 +58,6 @@ help :
 	@echo "    script  : Build the appropriate install script or Dockerfile."
 	@echo "    clean   : Clean all generated files."
 	@echo " "
-	@echo $(SCRIPT)
 
 
 script : $(CONFIG_FILE) $(TOOLS) $(SCRIPT)
@@ -66,19 +65,19 @@ script : $(CONFIG_FILE) $(TOOLS) $(SCRIPT)
 
 
 Dockerfile_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile.template
-	./tools/apply_conf.sh Dockerfile.template $@ $< "$(PREFIX)" "$(VERSION)"
+	@./tools/apply_conf.sh Dockerfile.template $@ $< "$(PREFIX)" "$(VERSION)"
 
 
 install_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install.template
-	./tools/apply_conf.sh install.template $@ $< "$(PREFIX)" "$(VERSION)"; \
-	chmod +x $@; \
-	./tools/gen_modulefile.sh tools/modulefile.in $@.modtemplate $<.module; \
-	./tools/apply_conf.sh $@.modtemplate $@.module $< "$(PREFIX)" "$(VERSION)"; \
-	./tools/apply_conf.sh tools/version.in $@.modversion $< "$(PREFIX)" "$(VERSION)"
+	@./tools/apply_conf.sh install.template $@ $< "$(PREFIX)" "$(VERSION)" \
+	&& chmod +x $@ \
+	&& ./tools/gen_modulefile.sh tools/modulefile.in $@.modtemplate $<.module \
+	&& ./tools/apply_conf.sh $@.modtemplate $@.module $< "$(PREFIX)" "$(VERSION)" \
+	&& ./tools/apply_conf.sh tools/version.in $@.modversion $< "$(PREFIX)" "$(VERSION)"
 
 
 Dockerfile.template : tools/Dockerfile.in $(rules_full) $(TOOLS)
-	./tools/gen_template.sh $< $@ "$(rules)" RUN
+	@./tools/gen_template.sh $< $@ "$(rules)" RUN
 
 
 install.template : tools/install.in $(rules_full) $(TOOLS)
