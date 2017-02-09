@@ -46,6 +46,9 @@ on edison using the gcc config::
     $> PREFIX=${SCRATCH}/software/desi CONFIG=edison-gcc make clean
     $> PREFIX=${SCRATCH}/software/desi CONFIG=edison-gcc make script
 
+If you don't have the $VERSION environment variable set, then a version
+string based on the git revision history is used.
+
 
 Installation
 ------------
@@ -70,6 +73,19 @@ we can look at it afterwards if there are any problems::
     $> cd build
     $> /path/to/git/desiconda/install_edison-gcc.sh >log 2>&1 &
     $> tail -f log
+
+After installation, the $PREFIX directory will contain directories
+and files::
+
+    $PREFIX/desiconda/$VERSION_conda
+    $PREFIX/desiconda/$VERSION_aux
+    $PREFIX/modulefiles/desiconda/$VERSION
+    $PREFIX/modulefiles/desiconda/.version_$VERSION
+
+If you want to make this version of desiconda the default, then just
+do::
+
+    $> ln -s .version_$VERSION .version
 
 
 License
