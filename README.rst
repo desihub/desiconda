@@ -22,7 +22,8 @@ commands needed to set up the environment.  See existing files for
 examples.
 
 To create a config for a docker image, the config file must be prefixed
-with "docker-".
+with "docker-".  You should not have any "*.module" or "*.sh" files for
+a docker config.
 
 
 Generate the Script
@@ -38,7 +39,12 @@ To clean up all generated scripts, do::
     $> make clean
 
 For normal installs, this creates an install script and corresponding
-module files.  For docker builds, a Dockerfile is created.
+module files.  For docker builds, a Dockerfile is created.  As an example,
+suppose we are installing a desiconda stack into our scratch directory
+on edison using the gcc config::
+
+    $> PREFIX=${SCRATCH}/software/desi CONFIG=edison-gcc make clean
+    $> PREFIX=${SCRATCH}/software/desi CONFIG=edison-gcc make script
 
 
 Installation
@@ -48,10 +54,22 @@ For normal installs, simply run the install script.  This installs the
 software and modulefile, as well as a module version file named
 ".version_$VERSION" in the module install directory.  You can manually
 move this into place if and when you want to make that the default
-version.
+version.  You can run the install script from an alternate build 
+directory.  For docker installs, run docker build from the same 
+directory as the generated Dockerfile, so that the path to data files 
+can be found.
 
-For docker installs, run docker build from the same directory as the
-generated Dockerfile, so that the path to data files can be found.
+As an example, suppose we want to install the script we made in the
+previous section for edison.  We'll make a temporary directory on
+scratch to do the building, since it is going to download and compile
+several big packages.  We'll also dump all output to a log file so that
+we can look at it afterwards if there are any problems::
+
+    $> cd $SCRATCH
+    $> mkdir build
+    $> cd build
+    $> /path/to/git/desiconda/install_edison-gcc.sh >log 2>&1 &
+    $> tail -f log
 
 
 License
