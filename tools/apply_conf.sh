@@ -5,10 +5,16 @@ outfile=$2
 conffile=$3
 prefix=$4
 version=$5
+docker=$6
 
 compiled_prefix="${prefix}/desiconda/${version}_aux"
 conda_prefix="${prefix}/desiconda/${version}_conda"
 module_dir="${prefix}/modulefiles/desiconda"
+
+if [ "x${docker}" = "xyes" ]; then
+    compiled_prefix="/usr"
+    conda_prefix="/usr"
+fi
 
 # Create list of substitutions
 
