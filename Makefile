@@ -36,9 +36,11 @@ TOOLS := $(wildcard ./tools/*)
 
 DOCKERCHECK := $(findstring docker,$(CONFIG))
 ifeq "$(DOCKERCHECK)" "docker"
-  SCRIPT := Dockerfile_$(CONFIG)
+  SPECTRO := Dockerfile_spectro_$(CONFIG)
+  SURVEY := Dockerfile_survey_$(CONFIG)
 else
-  SCRIPT := install_$(CONFIG).sh
+  SPECTRO := install_spectro_$(CONFIG).sh
+  SURVEY := install_survey_$(CONFIG).sh
   ifndef PREFIX
     PREFIX := $(error PREFIX undefined)undefined
   endif
@@ -61,35 +63,55 @@ help :
 	@echo " variables.  The VERSION environment variable is optional.  The"
 	@echo " following targets are supported:"
 	@echo " "
-	@echo "    script  : Build the appropriate install script or Dockerfile."
-	@echo "    clean   : Clean all generated files."
+	@echo "    spectro  : Build the install script or Dockerfile for the spectro pipeline."
+	@echo "    survey   : Build the install script or Dockerfile for the imaging survey."
+	@echo "    clean    : Clean all generated files."
 	@echo " "
 
 
-script : $(CONFIG_FILE) $(TOOLS) $(SCRIPT)
+spectro : $(CONFIG_FILE) $(TOOLS) $(SPECTRO)
+	@echo "" >/dev/null
+
+survey : $(CONFIG_FILE) $(TOOLS) $(SURVEY)
 	@echo "" >/dev/null
 
 
-Dockerfile_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile.template
-	@./tools/apply_conf.sh Dockerfile.template "Dockerfile_$(CONFIG)" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" yes
+Dockerfile_spectro_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile_spectro.template
+	@./tools/apply_conf.sh Dockerfile_spectro.template "Dockerfile_spectro_$(CONFIG)" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" yes
+
+Dockerfile_survey_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile_survey.template
+	@./tools/apply_conf.sh Dockerfile_survey.template "Dockerfile_survey_$(CONFIG)" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" yes
 
 
-install_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install.template
-	@./tools/apply_conf.sh install.template "install_$(CONFIG).sh" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
-	&& chmod +x "install_$(CONFIG).sh" \
-	&& ./tools/gen_modulefile.sh tools/modulefile.in "install_$(CONFIG).sh.modtemplate" "$(CONFIG_FILE).module" \
-	&& ./tools/apply_conf.sh "install_$(CONFIG).sh.modtemplate" "install_$(CONFIG).sh.module" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
-	&& ./tools/apply_conf.sh tools/version.in "install_$(CONFIG).sh.modversion" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no
+install_spectro_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install.template
+	@./tools/apply_conf.sh install.template "install_spectro_$(CONFIG).sh" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
+	&& chmod +x "install_spectro_$(CONFIG).sh" \
+	&& ./tools/gen_modulefile.sh tools/modulefile.in "install_spectro_$(CONFIG).sh.modtemplate" "$(CONFIG_FILE).module" \
+	&& ./tools/apply_conf.sh "install_spectro_$(CONFIG).sh.modtemplate" "install_spectro_$(CONFIG).sh.module" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
+	&& ./tools/apply_conf.sh tools/version.in "install_spectro_$(CONFIG).sh.modversion" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no
+
+install_survey_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install.template
+	@./tools/apply_conf.sh install.template "install_survey_$(CONFIG).sh" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
+	&& chmod +x "install_survey_$(CONFIG).sh" \
+	&& ./tools/gen_modulefile.sh tools/modulefile.in "install_survey_$(CONFIG).sh.modtemplate" "$(CONFIG_FILE).module" \
+	&& ./tools/apply_conf.sh "install_survey_$(CONFIG).sh.modtemplate" "install_survey_$(CONFIG).sh.module" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
+	&& ./tools/apply_conf.sh tools/version.in "install_survey_$(CONFIG).sh.modversion" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no
 
 
-Dockerfile.template : tools/Dockerfile.in $(rules_full) $(TOOLS)
-	@./tools/gen_template.sh tools/Dockerfile.in Dockerfile.template "$(rules)" RUN
+Dockerfile_spectro.template : tools/Dockerfile_spectro.in $(rules_full) $(TOOLS)
+	@./tools/gen_template.sh tools/Dockerfile_spectro.in Dockerfile_spectro.template "$(rules)" RUN
+
+Dockerfile_survey.template : tools/Dockerfile_survey.in $(rules_full) $(TOOLS)
+	@./tools/gen_template.sh tools/Dockerfile_survey.in Dockerfile_survey.template "$(rules)" RUN
 
 
-install.template : tools/install.in $(rules_full) $(TOOLS)
-	@./tools/gen_template.sh tools/install.in install.template "$(rules)"
+install_spectro.template : tools/install_spectro.in $(rules_full) $(TOOLS)
+	@./tools/gen_template.sh tools/install_spectro.in install_spectro.template "$(rules)"
+
+install_survey.template : tools/install_survey.in $(rules_full) $(TOOLS)
+	@./tools/gen_template.sh tools/install_survey.in install_survey.template "$(rules)"
 
 
 clean :
-	@rm -f Dockerfile_* Dockerfile.template install_* install.template
+	@rm -f Dockerfile_* install_*
 
