@@ -9,7 +9,7 @@ SHELL ["/bin/bash", "-c"]
 # Install system dependencies.
 
 RUN apt-get update \
-    && apt-get install -y curl procps build-essential gfortran git \
+    && apt-get install -y curl procps build-essential gfortran git subversion \
     && rm -fr /var/lib/apt/lists/*
 
 # Set up locales, to workaround a pip bug
