@@ -7,10 +7,6 @@ ifndef CONFIG
   CONFIG := $(error CONFIG undefined)undefined
 endif
 
-ifndef PREFIX
-  PREFIX := $(error PREFIX undefined)undefined
-endif
-
 ifndef VERSION
   gitdesc := $(shell git describe --tags --dirty --always | cut -d "-" -f 1)
   gitcnt := $(shell git rev-list --count HEAD)
@@ -43,6 +39,9 @@ ifeq "$(DOCKERCHECK)" "docker"
   SCRIPT := Dockerfile_$(CONFIG)
 else
   SCRIPT := install_$(CONFIG).sh
+  ifndef PREFIX
+    PREFIX := $(error PREFIX undefined)undefined
+  endif
 endif
 
 
