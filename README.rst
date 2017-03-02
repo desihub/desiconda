@@ -29,8 +29,7 @@ a docker config.
 Generate the Script
 -----------------------
 
-Set the CONFIG, PREFIX, and (optionally) VERSION environment variables.
-Then create the script with::
+Set the CONFIG, PREFIX, and (optionally) the VERSION and MODULEDIR environment variables.  Then create the script with::
 
     $> make script
 
@@ -47,7 +46,9 @@ on edison using the gcc config::
     $> PREFIX=${SCRATCH}/software/desi CONFIG=edison-gcc make script
 
 If you don't have the $VERSION environment variable set, then a version
-string based on the git revision history is used.
+string based on the git revision history is used.  If you don't have the
+$MODULEDIR environment variable set, then the modulefiles will be installed
+to $PREFIX/modulefiles.
 
 
 Installation
@@ -58,9 +59,13 @@ software and modulefile, as well as a module version file named
 ".version_$VERSION" in the module install directory.  You can manually
 move this into place if and when you want to make that the default
 version.  You can run the install script from an alternate build 
-directory.  For docker installs, run docker build from the same 
-directory as the generated Dockerfile, so that the path to data files 
-can be found.
+directory.  
+
+For docker installs, run docker build from the same directory as the 
+generated Dockerfile, so that the path to data files can be found.  Making 
+docker images requires a working docker installation and also an Intel based processor if you are building an image that uses Intel python packages.  You
+should familiarize yourself with the docker tool before attempting to use
+it for desiconda.
 
 As an example, suppose we want to install the script we made in the
 previous section for edison.  We'll make a temporary directory on
@@ -91,5 +96,5 @@ do::
 License
 -------
 
-desiconda is free software licensed under a 3-clause BSD-style license. For details see
-the ``LICENSE.rst`` file.
+desiconda is free software licensed under a 3-clause BSD-style license. For
+details see the ``LICENSE.rst`` file.

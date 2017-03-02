@@ -5,11 +5,12 @@ outfile=$2
 conffile=$3
 prefix=$4
 version=$5
-docker=$6
+moddir=$6
+docker=$7
 
 compiled_prefix="${prefix}/desiconda/${version}_aux"
 conda_prefix="${prefix}/desiconda/${version}_conda"
-module_dir="${prefix}/modulefiles/desiconda"
+module_dir="${moddir}/desiconda"
 
 if [ "x${docker}" = "xyes" ]; then
     compiled_prefix="/usr"
