@@ -31,6 +31,9 @@ WORKDIR /usr/src/desi
 
 # Install conda root environment
 
+ENV PYTHONPATH ""
+ENV PYTHONSTARTUP ""
+
 @conda_root@
 
 ENV ACCEPT_INTEL_PYTHON_EULA yes
