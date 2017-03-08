@@ -78,6 +78,10 @@ ADD dockerdata/mkl_11.3.3_include.tar.gz /usr/include/
 
 @harp@
 
+# Install PyMPIT for environment testing
+
+@pympit@
+
 # Set the entrypoint and default command
 
 ENTRYPOINT ["/bin/bash", "-c"]
