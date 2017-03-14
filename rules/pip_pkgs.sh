@@ -1,4 +1,5 @@
 pip install --no-binary :all: \
     fitsio \
     speclite \
-    hpsspy
+    hpsspy \
+    scons
