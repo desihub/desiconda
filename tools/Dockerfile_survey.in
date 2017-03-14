@@ -9,7 +9,7 @@ SHELL ["/bin/bash", "-c"]
 # Install system dependencies.
 
 RUN apt-get update \
-    && apt-get install -y curl procps build-essential gfortran git \
+    && apt-get install -y curl procps build-essential gfortran git subversion \
     && rm -fr /var/lib/apt/lists/*
 
 # Set up locales, to workaround a pip bug
@@ -30,6 +30,11 @@ RUN mkdir /usr/src/desi
 WORKDIR /usr/src/desi
 
 # Install conda root environment
+
+ENV PYTHONPATH ""
+ENV PYTHONSTARTUP ""
+ENV PYTHONNOUSERSITE "1"
+ENV PYTHONUSERBASE "/tmp"
 
 @conda_root@
 
@@ -71,9 +76,45 @@ ADD dockerdata/mkl_11.3.3_include.tar.gz /usr/include/
 
 @boost@
 
-# Install HARP.
+# libjpeg
 
-@harp@
+@libjpeg@
+
+# libtiff
+
+@libtiff@
+
+# wcslib
+
+@wcslib@
+
+# pcre
+
+@pcre@
+
+# swig
+
+@swig@
+
+# astrometry.net
+
+@astrometry_net@
+
+# tractor
+
+@tractor@
+
+
+
+# Create a fake home directory so that stupid programs don't touch
+# the real home partition.  In particular, astropy is horrible with this.
+
+RUN mkdir /home/desi
+RUN mkdir /home/desi/.astropy
+
+WORKDIR /home/desi
+ENV HOME /home/desi
+COPY dockerdata/astropy_config /home/desi/.astropy/config
 
 # Set the entrypoint and default command
 

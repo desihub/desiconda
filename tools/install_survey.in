@@ -66,9 +66,34 @@ fi
 
 @boost@
 
-# Install HARP.
+# libjpeg
 
-@harp@
+@libjpeg@
+
+# libtiff
+
+@libtiff@
+
+# wcslib
+
+@wcslib@
+
+# pcre
+
+@pcre@
+
+# swig
+
+@swig@
+
+# astrometry.net
+
+@astrometry_net@
+
+# tractor
+
+@tractor@
+
 
 # Compile python modules
 
