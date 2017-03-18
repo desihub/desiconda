@@ -84,15 +84,20 @@ ADD dockerdata/mkl_11.3.3_include.tar.gz /usr/include/
 
 @pympit@
 
-# Create a fake home directory so that stupid programs don't touch
-# the real home partition.  In particular, astropy is horrible with this.
+# Precompile all python modules
+
+RUN python -m compileall -f "/usr/lib/python@PYVERSION@/site-packages"
+
+# Create a fake home directory so that packages can create
+# config files if needed
 
 RUN mkdir /home/desi
 RUN mkdir /home/desi/.astropy
 
 WORKDIR /home/desi
 ENV HOME /home/desi
-COPY dockerdata/astropy_config /home/desi/.astropy/config
+
+RUN python -c "import astropy"
 
 # Set the entrypoint and default command
 
