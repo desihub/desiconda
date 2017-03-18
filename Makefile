@@ -83,15 +83,15 @@ Dockerfile_survey_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile_survey.template
 	@./tools/apply_conf.sh Dockerfile_survey.template "Dockerfile_survey_$(CONFIG)" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" yes
 
 
-install_spectro_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install.template
-	@./tools/apply_conf.sh install.template "install_spectro_$(CONFIG).sh" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
+install_spectro_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install_spectro.template
+	@./tools/apply_conf.sh install_spectro.template "install_spectro_$(CONFIG).sh" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
 	&& chmod +x "install_spectro_$(CONFIG).sh" \
 	&& ./tools/gen_modulefile.sh tools/modulefile.in "install_spectro_$(CONFIG).sh.modtemplate" "$(CONFIG_FILE).module" \
 	&& ./tools/apply_conf.sh "install_spectro_$(CONFIG).sh.modtemplate" "install_spectro_$(CONFIG).sh.module" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
 	&& ./tools/apply_conf.sh tools/version.in "install_spectro_$(CONFIG).sh.modversion" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no
 
-install_survey_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install.template
-	@./tools/apply_conf.sh install.template "install_survey_$(CONFIG).sh" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
+install_survey_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install_survey.template
+	@./tools/apply_conf.sh install_survey.template "install_survey_$(CONFIG).sh" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
 	&& chmod +x "install_survey_$(CONFIG).sh" \
 	&& ./tools/gen_modulefile.sh tools/modulefile.in "install_survey_$(CONFIG).sh.modtemplate" "$(CONFIG_FILE).module" \
 	&& ./tools/apply_conf.sh "install_survey_$(CONFIG).sh.modtemplate" "install_survey_$(CONFIG).sh.module" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
