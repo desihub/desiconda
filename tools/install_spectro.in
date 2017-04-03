@@ -70,6 +70,12 @@ fi
 
 @harp@
 
+# GalSim and dependencies
+
+@scons@
+
+
+
 # Compile python modules
 
 python3 -m compileall -f "@CONDA_PREFIX@/lib/python3.5/site-packages"

@@ -94,6 +94,10 @@ fi
 
 @tractor@
 
+# GalSim and dependencies
+
+@scons@
+
 
 # Compile python modules
 

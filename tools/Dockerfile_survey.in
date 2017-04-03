@@ -9,7 +9,7 @@ SHELL ["/bin/bash", "-c"]
 # Install system dependencies.
 
 RUN apt-get update \
-    && apt-get install -y curl procps build-essential gfortran git subversion \
+    && apt-get install -y curl procps build-essential gfortran git subversion python \
     && rm -fr /var/lib/apt/lists/*
 
 # Set up locales, to workaround a pip bug
@@ -103,6 +103,12 @@ ADD dockerdata/mkl_11.3.3_include.tar.gz /usr/include/
 # tractor
 
 @tractor@
+
+# GalSim and dependencies
+
+@scons@
+
+
 
 # Precompile all python modules
 
