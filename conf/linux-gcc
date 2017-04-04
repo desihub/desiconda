@@ -13,8 +13,8 @@ MPIFC = mpifc
 
 # Compile flags
 
-CFLAGS = -O3 -fPIC -std=gnu99 -pthread
-CXXFLAGS = -O3 -fPIC -std=c++11 -pthread
+CFLAGS = -O3 -fPIC -pthread
+CXXFLAGS = -O3 -fPIC -pthread
 FCFLAGS = -O3 -fPIC -fexceptions -pthread
 
 OPENMP_CFLAGS = -fopenmp
@@ -40,6 +40,7 @@ MPI_LIB = mpi
 
 # For BLAS/LAPACK, we use the conda-installed MKL
 
+BLAS_INCLUDE = @CONDA_PREFIX@/include
 BLAS = -L@CONDA_PREFIX@/lib -lmkl_rt -fopenmp -lpthread -lm -ldl
 LAPACK =
 

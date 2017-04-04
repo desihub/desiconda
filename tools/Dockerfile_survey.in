@@ -54,6 +54,11 @@ ENV ACCEPT_INTEL_PYTHON_EULA yes
 
 ADD dockerdata/mkl_11.3.3_include.tar.gz /usr/include/
 
+# Copy all patch files to current working directory
+
+RUN mkdir ./rules
+ADD rules/patch_* ./rules/
+
 # Install MPICH 3.2 which is compatible with the external
 # Cray MPICH which is prepended to LD_LIBRARY_PATH as part
 # of shifter.
@@ -108,6 +113,9 @@ ADD dockerdata/mkl_11.3.3_include.tar.gz /usr/include/
 
 @scons@
 
+@tmv@
+
+@galsim@
 
 
 # Precompile all python modules

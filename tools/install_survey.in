@@ -98,6 +98,16 @@ fi
 
 @scons@
 
+@tmv@
+
+if [ ! -e rules/patch_galsim ]; then
+    # this is an out-of-source build
+    mkdir -p rules
+    cp ${topdir}/rules/patch_galsim ./rules/
+fi
+
+@galsim@
+
 
 # Compile python modules
 

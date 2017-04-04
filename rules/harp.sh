@@ -4,8 +4,8 @@ curl -SL https://github.com/tskisner/HARP/releases/download/v1.0.2/harp-1.0.2.ta
     && cd harp-1.0.2 \
     && CC="@CC@" CXX="@CXX@" CFLAGS="@CFLAGS@" CXXFLAGS="@CXXFLAGS@" ./configure @CROSS@ \
     --disable-mpi --disable-python \
-    --with-cfitsio=@AUX_PREFIX@ \
-    --with-boost=@AUX_PREFIX@ \
+    --with-cfitsio="@AUX_PREFIX@" \
+    --with-boost="@AUX_PREFIX@" \
     --with-blas="@BLAS@" \
     --with-lapack="@LAPACK@" \
     --prefix=@AUX_PREFIX@ \

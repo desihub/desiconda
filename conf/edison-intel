@@ -41,6 +41,7 @@ MPI_LIB = mpich
 
 # For BLAS/LAPACK, use MKL
 
+BLAS_INCLUDE = /opt/intel/compilers_and_libraries_2017.1.132/linux/mkl/include
 BLAS = -L/opt/intel/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64 -lmkl_rt -fopenmp -lpthread -lm -ldl
 LAPACK = 
 

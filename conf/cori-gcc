@@ -13,8 +13,8 @@ MPIFC = ftn
 
 # Compile flags
 
-CFLAGS = -O3 -fPIC -std=gnu99 -pthread
-CXXFLAGS = -O3 -fPIC -std=c++11 -pthread
+CFLAGS = -O3 -fPIC -pthread
+CXXFLAGS = -O3 -fPIC -pthread
 FCFLAGS = -O3 -fPIC -fexceptions -pthread
 
 OPENMP_CFLAGS = -fopenmp
@@ -40,6 +40,7 @@ MPI_LIB = mpich
 
 # For BLAS/LAPACK, we use MKL
 
+BLAS_INCLUDE = /opt/intel/compilers_and_libraries_2017.1.132/linux/mkl/include
 BLAS = -L/opt/intel/compilers_and_libraries_2017.1.132/linux/mkl/lib/intel64 -lmkl_rt -fopenmp -lpthread -lm -ldl
 LAPACK = 
 
