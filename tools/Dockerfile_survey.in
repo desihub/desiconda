@@ -9,7 +9,9 @@ SHELL ["/bin/bash", "-c"]
 # Install system dependencies.
 
 RUN apt-get update \
-    && apt-get install -y curl procps build-essential gfortran git subversion python \
+    && apt-get install -y curl procps build-essential gfortran git subversion \
+    python libcairo2-dev libpixman-1-dev libgsl-dev libnetpbm10-dev netpbm \
+    zlib1g-dev libbz2-dev libpng12-dev pkg-config \
     && rm -fr /var/lib/apt/lists/*
 
 # Set up locales, to workaround a pip bug
@@ -53,6 +55,13 @@ ENV ACCEPT_INTEL_PYTHON_EULA yes
 # Copy MKL headers into conda root
 
 ADD dockerdata/mkl_11.3.3_include.tar.gz /usr/include/
+
+# The conda TCL packages overwrite the system-installed regex.h.  So
+# now we force reinstall of the package that provides that
+
+RUN apt-get update \
+    && apt-get install -y --reinstall libc6-dev \
+    && rm -fr /var/lib/apt/lists/*
 
 # Copy all patch files to current working directory
 
