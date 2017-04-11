@@ -44,6 +44,16 @@ conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 
 @pip_pkgs@
 
+# Autotools
+
+@m4@
+
+@libtool@
+
+@autoconf@
+
+@automake@
+
 # Install mpi4py.
 
 @mpi4py@

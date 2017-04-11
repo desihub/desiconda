@@ -11,6 +11,7 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update \
     && apt-get install -y curl procps build-essential gfortran git subversion \
     python libcairo2-dev libpixman-1-dev libgsl-dev flex pkg-config cmake \
+    autoconf m4 libtool automake \
     && rm -fr /var/lib/apt/lists/*
 
 # Set up locales, to workaround a pip bug
@@ -147,7 +148,9 @@ ADD rules/patch_* ./rules/
 
 # Astromatic toolkit pieces
 
+@sextractor@
 
+@psfex@
 
 # Precompile all python modules
 
