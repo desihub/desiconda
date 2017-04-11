@@ -10,8 +10,7 @@ SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update \
     && apt-get install -y curl procps build-essential gfortran git subversion \
-    python libcairo2-dev libpixman-1-dev libgsl-dev libnetpbm10-dev netpbm \
-    zlib1g-dev libbz2-dev libpng12-dev pkg-config \
+    python libcairo2-dev libpixman-1-dev libgsl-dev flex pkg-config cmake \
     && rm -fr /var/lib/apt/lists/*
 
 # Set up locales, to workaround a pip bug
@@ -90,11 +89,27 @@ ADD rules/patch_* ./rules/
 
 @boost@
 
-# libjpeg
+# Install healpix
+
+@healpix@
+
+# GalSim and dependencies
+
+@scons@
+
+@tmv@
+
+@galsim@
+
+# Image libraries needed by astrometry
+
+@bzip2@
+
+@libz@
+
+@libpng@
 
 @libjpeg@
-
-# libtiff
 
 @libtiff@
 
@@ -110,6 +125,18 @@ ADD rules/patch_* ./rules/
 
 @swig@
 
+# ceres
+
+@metis@
+
+@glog@
+
+@eigen@
+
+@suitesparse@
+
+@ceres@
+
 # astrometry.net
 
 @astrometry_net@
@@ -118,13 +145,8 @@ ADD rules/patch_* ./rules/
 
 @tractor@
 
-# GalSim and dependencies
+# Astromatic toolkit pieces
 
-@scons@
-
-@tmv@
-
-@galsim@
 
 
 # Precompile all python modules

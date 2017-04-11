@@ -7,5 +7,7 @@ curl -SL http://sourceforge.net/projects/libjpeg/files/libjpeg/6b/jpegsrc.v6b.ta
     && make -j 4 \
     && mkdir -p "@AUX_PREFIX@/man/man1" \
     && make install \
+    && make install-lib \
+    && make install-headers \
     && cd .. \
     && rm -rf jpeg*

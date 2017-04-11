@@ -1,9 +1,9 @@
-curl -SL http://download.osgeo.org/libtiff/tiff-4.0.7.tar.gz \
-    -o tiff-4.0.7.tar.gz \
-    && tar xzf tiff-4.0.7.tar.gz \
-    && cd tiff-4.0.7 \
+curl -SL https://github.com/google/glog/archive/v0.3.4.tar.gz \
+    -o glog-0.3.4.tar.gz \
+    && tar xzf glog-0.3.4.tar.gz \
+    && cd glog-0.3.4 \
     && CC="@CC@" CXX="@CXX@" CFLAGS="@CFLAGS@" CXXFLAGS="@CXXFLAGS@" ./configure @CROSS@ \
     --prefix="@AUX_PREFIX@" \
     && make -j 4 && make install \
     && cd .. \
-    && rm -rf tiff*
+    && rm -rf glog*

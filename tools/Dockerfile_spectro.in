@@ -10,8 +10,7 @@ SHELL ["/bin/bash", "-c"]
 
 RUN apt-get update \
     && apt-get install -y curl procps build-essential gfortran git subversion \
-    python libcairo2-dev libpixman-1-dev libgsl-dev libnetpbm10-dev netpbm \
-    zlib1g-dev libbz2-dev libpng12-dev pkg-config \
+    python libcairo2-dev libpixman-1-dev libgsl-dev flex pkg-config cmake \
     && rm -fr /var/lib/apt/lists/*
 
 # Set up locales, to workaround a pip bug
@@ -94,6 +93,10 @@ ADD rules/patch_* ./rules/
 
 @harp@
 
+# Install healpix
+
+@healpix@
+
 # Install PyMPIT for environment testing
 
 @pympit@
@@ -105,8 +108,6 @@ ADD rules/patch_* ./rules/
 @tmv@
 
 @galsim@
-
-
 
 # Precompile all python modules
 
