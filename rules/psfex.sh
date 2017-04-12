@@ -5,7 +5,7 @@ curl -SL http://www.astromatic.net/download/psfex/psfex-3.17.1.tar.gz \
     && patch -p1 < ../rules/patch_psfex \
     && chmod +x autogen.sh \
     && ./autogen.sh \
-    && CC="@CC@" CFLAGS="@CFLAGS@" ./configure @CROSS@ \
+    && CC="@CC@" CFLAGS="@CFLAGS@" CPPFLAGS="-I@BLAS_INCLUDE@" ./configure @CROSS@ \
     --with-lapacke="@LAPACK@ @BLAS@" --prefix="@AUX_PREFIX@" \
     && make && make install \
     && cd .. \

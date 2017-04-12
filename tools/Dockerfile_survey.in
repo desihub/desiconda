@@ -148,9 +148,15 @@ ADD rules/patch_* ./rules/
 
 # Astromatic toolkit pieces
 
+@plplot@
+
 @sextractor@
 
 @psfex@
+
+# Remove the temporary patches
+
+RUN rm -rf ./rules
 
 # Precompile all python modules
 

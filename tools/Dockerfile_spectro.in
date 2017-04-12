@@ -110,6 +110,10 @@ ADD rules/patch_* ./rules/
 
 @galsim@
 
+# Remove the temporary patches
+
+RUN rm -rf ./rules
+
 # Precompile all python modules
 
 RUN python -m compileall -f "/usr/lib/python@PYVERSION@/site-packages"
