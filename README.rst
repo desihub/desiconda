@@ -6,9 +6,9 @@ Introduction
 ---------------
 
 This package contains scripts for installing conda and all compiled
-dependencies needed by the spectroscopic pipeline.  The rules to install
-or build each dependency is separated into a file, and used by both
-regular installs and building docker images.
+dependencies needed by the spectroscopic pipeline and the imaging survey.
+The rules to install or build each dependency is separated into a file
+and used by both regular installs and for building docker images.
 
 
 Configuration
@@ -25,13 +25,21 @@ To create a config for a docker image, the config file must be prefixed
 with "docker-".  You should not have any "*.module" or "*.sh" files for
 a docker config.
 
+Some imaging survey software (tractor) requires python2.  If you installing
+the survey target, then you must use a config that is python2 based.
+
 
 Generate the Script
 -----------------------
 
-Set the CONFIG, PREFIX, and (optionally) the VERSION and MODULEDIR environment variables.  Then create the script with::
+Set the CONFIG, PREFIX, and (optionally) the VERSION and MODULEDIR 
+environment variables.  Then create the install script with::
 
-    $> make script
+    $> make spectro
+
+OR
+
+    $> make survey
 
 To clean up all generated scripts, do::
 
@@ -43,7 +51,7 @@ suppose we are installing a desiconda stack into our scratch directory
 on edison using the gcc config::
 
     $> PREFIX=${SCRATCH}/software/desi CONFIG=edison-gcc make clean
-    $> PREFIX=${SCRATCH}/software/desi CONFIG=edison-gcc make script
+    $> PREFIX=${SCRATCH}/software/desi CONFIG=edison-gcc make spectro
 
 If you don't have the $VERSION environment variable set, then a version
 string based on the git revision history is used.  If you don't have the
@@ -63,8 +71,9 @@ directory.
 
 For docker installs, run docker build from the same directory as the 
 generated Dockerfile, so that the path to data files can be found.  Making 
-docker images requires a working docker installation and also an Intel based processor if you are building an image that uses Intel python packages.  You
-should familiarize yourself with the docker tool before attempting to use
+docker images requires a working docker installation and also an Intel 
+based processor if you are building an image that uses Intel python packages.
+You should familiarize yourself with the docker tool before attempting to use
 it for desiconda.
 
 As an example, suppose we want to install the script we made in the
