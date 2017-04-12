@@ -37,7 +37,7 @@ environment variables.  Then create the install script with::
 
     $> make spectro
 
-OR
+OR::
 
     $> make survey
 
