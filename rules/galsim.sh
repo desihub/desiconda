@@ -4,7 +4,7 @@ curl -SL https://github.com/GalSim-developers/GalSim/archive/v1.4.3.tar.gz \
     && cd GalSim-1.4.3 \
     && patch -p1 < ../rules/patch_galsim \
     && scons PREFIX="@AUX_PREFIX@" \
-    CXX="@CXX@" FLAGS="@CXXFLAGS@" \
+    CXX="@CXX@" FLAGS="@CXXFLAGS@ -std=c++98" \
     TMV_DIR="@AUX_PREFIX@" \
     FFTW_DIR="@AUX_PREFIX@" \
     BOOST_DIR="@AUX_PREFIX@" \

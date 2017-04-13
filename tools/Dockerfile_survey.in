@@ -148,8 +148,6 @@ ADD rules/patch_* ./rules/
 
 # Astromatic toolkit pieces
 
-@plplot@
-
 @sextractor@
 
 @psfex@

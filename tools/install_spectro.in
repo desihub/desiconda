@@ -16,13 +16,13 @@ fi
 
 mkdir -p @CONDA_PREFIX@/bin
 mkdir -p @CONDA_PREFIX@/lib
-mkdir -p @AUX_PREFIX@/lib/python3.5/site-packages
+mkdir -p @AUX_PREFIX@/lib/python@PYVERSION@/site-packages
 
 export PATH=@AUX_PREFIX@/bin:@CONDA_PREFIX@/bin:${PATH}
 export CPATH=@AUX_PREFIX@/include:${CPATH}
 export LIBRARY_PATH=@AUX_PREFIX@/lib:${LIBRARY_PATH}
 export LD_LIBRARY_PATH=@AUX_PREFIX@/lib:${LD_LIBRARY_PATH}
-export PYTHONPATH=@AUX_PREFIX@/lib/python3.5/site-packages:${PYTHONPATH}
+export PYTHONPATH=@AUX_PREFIX@/lib/python@PYVERSION@/site-packages
 
 export ACCEPT_INTEL_PYTHON_EULA=yes
 
@@ -43,6 +43,15 @@ conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 # Install pip packages.
 
 @pip_pkgs@
+
+# Copy patches
+
+if [ ! -e ./conf ]; then
+    # this is an out-of-source build, copy patches
+    rm -rf ./rules
+    mkdir ./rules
+    cp ${topdir}/rules/patch_* ./rules/
+fi
 
 # Autotools
 
@@ -66,13 +75,7 @@ conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 
 @fftw@
 
-# Install BOOST.  Copy patch if needed.
-
-if [ ! -e rules/patch_boost ]; then
-    # this is an out-of-source build
-    mkdir -p rules
-    cp ${topdir}/rules/patch_boost ./rules/
-fi
+# Install BOOST.
 
 @boost@
 
@@ -80,24 +83,33 @@ fi
 
 @harp@
 
+# Install healpix
+
+@healpix@
+
+# Install PyMPIT for environment testing
+
+@pympit@
+
 # GalSim and dependencies
 
 @scons@
 
 @tmv@
 
-if [ ! -e rules/patch_galsim ]; then
-    # this is an out-of-source build
-    mkdir -p rules
-    cp ${topdir}/rules/patch_galsim ./rules/
-fi
-
 @galsim@
+
+# Remove patches if needed
+
+if [ ! -e ./conf ]; then
+    # this is an out-of-source build
+    rm -rf ./rules
+fi
 
 # Compile python modules
 
-python3 -m compileall -f "@CONDA_PREFIX@/lib/python3.5/site-packages"
-python3 -m compileall -f "@AUX_PREFIX@"
+python@PYVERSION@ -m compileall -f "@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages"
+python@PYVERSION@ -m compileall -f "@AUX_PREFIX@"
 
 # Set permissions
 
