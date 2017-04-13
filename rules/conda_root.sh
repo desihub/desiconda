@@ -1,7 +1,3 @@
-# We add and then remove the intel channel to 
-# ensure that it is removed regardless of whether
-# it existed in the config.
-
 curl -SL @MINICONDA@ \
     -o miniconda.sh \
     && /bin/bash miniconda.sh -b -f -p @CONDA_PREFIX@ \
