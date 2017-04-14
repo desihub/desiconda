@@ -23,8 +23,8 @@ inst="/global/common/${mach}/contrib/desi/code"
 moddir="/global/common/${mach}/contrib/desi/modulefiles"
 
 for conf in ${survconfs}; do
-    CONFIG="${mach}-${conf}" PREFIX="${inst}" VERSION="${ver}-survey" \
-    MODULEDIR="${moddir}" make survey
+    CONFIG="${mach}-${conf}" PREFIX="${inst}" VERSION="${ver}-imaging" \
+    MODULEDIR="${moddir}" make imaging
 done
 
 for conf in ${specconfs}; do

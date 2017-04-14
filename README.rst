@@ -26,7 +26,7 @@ with "docker-".  You should not have any "*.module" or "*.sh" files for
 a docker config.
 
 Some imaging survey software (tractor) requires python2.  If you installing
-the survey target, then you must use a config that is python2 based.
+the imaging target, then you must use a config that is python2 based.
 
 
 Generate the Script
@@ -39,7 +39,7 @@ environment variables.  Then create the install script with::
 
 OR::
 
-    $> make survey
+    $> make imaging
 
 To clean up all generated scripts, do::
 
