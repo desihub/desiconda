@@ -27,7 +27,7 @@ CROSS =
 
 # Miniconda install
 
-INTEL_CONDA = no
+INTEL_CONDA = yes
 MINICONDA = https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh
 PYVERSION = 2.7
 
