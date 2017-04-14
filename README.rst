@@ -85,7 +85,7 @@ we can look at it afterwards if there are any problems::
     $> cd $SCRATCH
     $> mkdir build
     $> cd build
-    $> /path/to/git/desiconda/install_edison-gcc.sh >log 2>&1 &
+    $> /path/to/git/desiconda/install_spectro_edison-gcc.sh >log 2>&1 &
     $> tail -f log
 
 After installation, the $PREFIX directory will contain directories
