@@ -1,6 +1,7 @@
 conda install --copy --yes \
     nose \
     requests \
+    future \
     numpy \
     scipy \
     matplotlib \

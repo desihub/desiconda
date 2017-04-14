@@ -129,6 +129,10 @@ fi
 @ceres@
 
 # astrometry.net
+# This package and tractor install python tools to a "lib/python"
+# directory rather than site-packages.  Make a symlink here.
+
+ln -s "@AUX_PREFIX@/lib/python@PYVERSION@/site-packages" "@AUX_PREFIX@/lib/python"
 
 @astrometry_net@
 
