@@ -24,6 +24,7 @@ export CPATH=@AUX_PREFIX@/include:${CPATH}
 export LIBRARY_PATH=@AUX_PREFIX@/lib:${LIBRARY_PATH}
 export LD_LIBRARY_PATH=@AUX_PREFIX@/lib:${LD_LIBRARY_PATH}
 export PYTHONPATH=@AUX_PREFIX@/lib/python@PYVERSION@/site-packages
+export PKG_CONFIG_PATH=@AUX_PREFIX@/lib/pkgconfig
 
 export ACCEPT_INTEL_PYTHON_EULA=yes
 

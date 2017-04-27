@@ -34,6 +34,7 @@ prepend-path CPATH "@AUX_PREFIX@/include"
 prepend-path LD_LIBRARY_PATH "@AUX_PREFIX@/lib"
 prepend-path LIBRARY_PATH "@AUX_PREFIX@/lib"
 prepend-path PYTHONPATH "@AUX_PREFIX@/lib/python@PYVERSION@/site-packages"
+prepend-path PKG_CONFIG_PATH "@AUX_PREFIX@/lib/pkgconfig"
 
 # Set environment variables possibly needed for compiling spectro pipeline
 
