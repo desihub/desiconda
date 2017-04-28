@@ -11,5 +11,6 @@ conda install --copy --yes \
     h5py \
     ipython-notebook \
     psutil \
+    ephem \
     numba=0.28.1 \
     && rm -rf @CONDA_PREFIX@/pkgs/*
