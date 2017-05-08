@@ -24,7 +24,7 @@ export CPATH=@AUX_PREFIX@/include:${CPATH}
 export LIBRARY_PATH=@AUX_PREFIX@/lib:${LIBRARY_PATH}
 export LD_LIBRARY_PATH=@AUX_PREFIX@/lib:${LD_LIBRARY_PATH}
 export PYTHONPATH=@AUX_PREFIX@/lib/python@PYVERSION@/site-packages
-export PKG_CONFIG_PATH=@AUX_PREFIX@/lib/pkgconfig
+export PKG_CONFIG_PATH=@AUX_PREFIX@/lib/pkgconfig:${PKG_CONFIG_PATH}
 
 export ACCEPT_INTEL_PYTHON_EULA=yes
 
@@ -146,6 +146,8 @@ ln -s "@AUX_PREFIX@/lib/python@PYVERSION@/site-packages" "@AUX_PREFIX@/lib/pytho
 @sextractor@
 
 @psfex@
+
+@scamp@
 
 # Remove patches if needed
 
