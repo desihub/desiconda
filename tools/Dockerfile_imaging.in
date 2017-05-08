@@ -156,6 +156,8 @@ RUN ln -s "@AUX_PREFIX@/lib/python@PYVERSION@/site-packages" "@AUX_PREFIX@/lib/p
 
 @psfex@
 
+@scamp@
+
 # Remove the temporary patches
 
 RUN rm -rf ./rules
