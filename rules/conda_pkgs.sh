@@ -13,4 +13,6 @@ conda install --copy --yes \
     psutil \
     ephem \
     numba=0.28.1 \
+    && conda install --copy --yes -c defaults \
+    ipython ipython-notebook \
     && rm -rf @CONDA_PREFIX@/pkgs/*
