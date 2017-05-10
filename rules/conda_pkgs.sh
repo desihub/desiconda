@@ -9,7 +9,6 @@ conda install --copy --yes \
     astropy \
     hdf5 \
     h5py \
-    ipython-notebook \
     psutil \
     ephem \
     numba=0.28.1 \
