@@ -147,6 +147,8 @@ ln -s "@AUX_PREFIX@/lib/python@PYVERSION@/site-packages" "@AUX_PREFIX@/lib/pytho
 
 @psfex@
 
+@cdsclient@
+
 @scamp@
 
 # Remove patches if needed
