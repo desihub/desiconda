@@ -21,11 +21,11 @@ of concrete examples to start.
 Example 1:  Spectro Pipeline on a Workstation
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-Imagine you wanted to install a full desiconda stack to a workstation or
+Imagine you wanted to install a full desiconda stack on a workstation or
 cluster (rather than manually getting all the dependencies in place).  
-You followed the section below and created a config file for you machine
+You followed the section below and created a config file for your machine
 called "myserver" and put it in the conf directory.  You plan on installing
-desiconda in your home directory (~/software/desi).  Since you downloaded
+desiconda in your home directory ($HOME/software/desi).  Since you downloaded
 the latest tagged version (1.1.3) of desiconda, you are happy with the 
 automatic version string that will be used for the install prefix.  The 
 spectro pipeline primarily works with python3, so that is what you specified 
@@ -103,7 +103,9 @@ actual building in $SCRATCH::
     $> mkdir build
     $> cd build
 
-Also the output will be very long, so pipe it to a log file::
+Also the output will be very long, so pipe it to a log file.  This next line
+assumes the desiconda git clone is in your home directory- adjust the path
+for your location::
 
     $> ~/desiconda/install_imaging_edison-gcc-py27.sh 2>&1 | tee log
 
