@@ -7,6 +7,7 @@ conda install --copy --yes \
     scipy \
     matplotlib \
     basemap \
+    seaborn \
     pyyaml \
     astropy \
     hdf5 \
