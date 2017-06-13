@@ -1,0 +1,23 @@
+package:
+  name: harp
+  version: 1.0.2
+
+source:
+  fn: harp-1.0.2.tar.bz2
+  url: https://github.com/tskisner/HARP/releases/download/v1.0.2/harp-1.0.2.tar.bz2
+
+requirements:
+  build:
+    - cfitsio
+    - numpy
+    - boost
+
+  run:
+    - cfitsio
+    - numpy
+    - boost
+
+about:
+  home: https://github.com/tskisner/HARP
+  license: BSD
+  summary: High performance Astrophysics Reduction and Processing
