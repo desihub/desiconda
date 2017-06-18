@@ -1,0 +1,27 @@
+package:
+  name: healpix
+  version: 3.31.2
+
+source:
+  fn: healpix-autotools-3.31.2.tar.gz
+  url: https://github.com/tskisner/healpix-autotools/releases/download/v3.31.2/healpix-autotools-3.31.2.tar.gz
+
+requirements:
+  build:
+    - cfitsio
+    - numpy
+    - six
+    - matplotlib
+    - astropy
+
+  run:
+    - cfitsio
+    - numpy
+    - six
+    - matplotlib
+    - astropy
+
+about:
+  home: https://github.com/tskisner/healpix-autotools
+  license: GPL
+  summary: Autotools bundled HEALPix.
