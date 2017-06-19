@@ -1,6 +1,6 @@
 #!/bin/bash
 
-for pkg in cfitsio fftw healpix harp; do
+for pkg in cfitsio fftw healpix boost harp; do
 	conda build ${pkg}
 done
 
