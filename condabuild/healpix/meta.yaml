@@ -8,6 +8,7 @@ source:
 
 requirements:
   build:
+    - python >=3.5,<3.6
     - cfitsio
     - numpy
     - six
@@ -15,6 +16,7 @@ requirements:
     - astropy
 
   run:
+    - python >=3.5,<3.6
     - cfitsio
     - numpy
     - six

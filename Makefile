@@ -43,6 +43,7 @@ DOCKERCHECK := $(findstring docker,$(CONFIG))
 ifeq "$(DOCKERCHECK)" "docker"
   SPECTRO := Dockerfile_spectro_$(CONFIG)
   SURVEY := Dockerfile_imaging_$(CONFIG)
+  CBUILD := Dockerfile_condabld_$(CONFIG)
 else
   SPECTRO := install_spectro_$(CONFIG).sh
   SURVEY := install_imaging_$(CONFIG).sh
@@ -70,6 +71,7 @@ help :
 	@echo " "
 	@echo "    spectro  : Build the install script or Dockerfile for the spectro pipeline."
 	@echo "    imaging  : Build the install script or Dockerfile for the imaging survey."
+	@echo "    condabld : Build the Dockerfile for use in conda builds."
 	@echo "    clean    : Clean all generated files."
 	@echo " "
 
@@ -80,12 +82,18 @@ spectro : $(CONFIG_FILE) $(TOOLS) $(SPECTRO)
 imaging : $(CONFIG_FILE) $(TOOLS) $(SURVEY)
 	@echo "" >/dev/null
 
+condabld : $(CONFIG_FILE) $(TOOLS) $(CBUILD)
+	@echo "" >/dev/null
+
 
 Dockerfile_spectro_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile_spectro.template
 	@./tools/apply_conf.sh Dockerfile_spectro.template "Dockerfile_spectro_$(CONFIG)" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" yes
 
 Dockerfile_imaging_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile_imaging.template
 	@./tools/apply_conf.sh Dockerfile_imaging.template "Dockerfile_imaging_$(CONFIG)" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" yes
+
+Dockerfile_condabld_$(CONFIG) : $(CONFIG_FILE) $(TOOLS) Dockerfile_condabld.template
+	@./tools/apply_conf.sh Dockerfile_condabld.template "Dockerfile_condabld_$(CONFIG)" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" yes
 
 
 install_spectro_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install_spectro.template
@@ -108,6 +116,9 @@ Dockerfile_spectro.template : tools/Dockerfile_spectro.in $(rules_full) $(TOOLS)
 
 Dockerfile_imaging.template : tools/Dockerfile_imaging.in $(rules_full) $(TOOLS)
 	@./tools/gen_template.sh tools/Dockerfile_imaging.in Dockerfile_imaging.template "$(rules)" RUN
+
+Dockerfile_condabld.template : tools/Dockerfile_condabld.in $(rules_full) $(TOOLS)
+	@./tools/gen_template.sh tools/Dockerfile_condabld.in Dockerfile_condabld.template "$(rules)" RUN
 
 
 install_spectro.template : tools/install_spectro.in $(rules_full) $(TOOLS)

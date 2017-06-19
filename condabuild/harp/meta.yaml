@@ -8,11 +8,13 @@ source:
 
 requirements:
   build:
+    - python >=3.5,<3.6
     - cfitsio
     - numpy
     - boost
 
   run:
+    - python >=3.5,<3.6
     - cfitsio
     - numpy
     - boost

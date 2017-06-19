@@ -1,9 +1,11 @@
 #!/bin/bash
 
-eval ./configure \
+eval CFLAGS="-std=c99 ${CFLAGS}" \
+./configure \
 --prefix="${PREFIX}" \
 --disable-mpi \
---disable-fortran
+--disable-fortran \
+--with-cfitsio="${PREFIX}"
 make
 make install
 rm -f "${PREFIX}/lib/*.la"
