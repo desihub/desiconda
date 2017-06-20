@@ -1,0 +1,55 @@
+FROM centos:7
+
+MAINTAINER Theodore Kisner <tskisner@lbl.gov>
+
+# Use bash
+
+SHELL ["/bin/bash", "-c"]
+
+# Install system dependencies.
+
+RUN yum -y update \
+	&& yum -y install which curl git gcc gcc-c++ make \
+    gzip bzip2 autoconf m4 libtool automake nano
+
+# Create working directory for builds
+
+RUN mkdir -p /usr/src
+WORKDIR /usr/src
+
+# Install conda root environment
+
+ENV PYTHONPATH ""
+ENV PYTHONSTARTUP ""
+ENV PYTHONNOUSERSITE "1"
+ENV PYTHONUSERBASE "/tmp"
+
+RUN mkdir -p /conda/bin
+
+ENV PATH="/conda/bin:${PATH}"
+
+RUN curl -SL https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh \
+    -o miniconda.sh \
+    && /bin/bash miniconda.sh -b -f -p /conda \
+    && conda install --copy --yes python=3.5 \
+    && rm miniconda.sh
+
+# Install conda packages.
+
+@conda_pkgs@
+
+RUN conda install --copy --yes conda-build anaconda-client
+
+# Copy MKL headers into conda root
+
+ADD dockerdata/mkl_11.3.3_include.tar.gz /conda/include/
+
+# Make the mount point for package recipes
+
+RUN mkdir -p condabuild
+
+# Set the entrypoint and default command
+
+ENTRYPOINT ["/bin/bash", "-c"]
+CMD ["/bin/bash"]
+

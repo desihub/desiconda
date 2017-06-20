@@ -12,6 +12,6 @@ root="$(dirname $(which conda))/.."
 plat=$(conda info | grep platform | awk '{print $3}')
 
 for pkg in ${pkglist}; do
-    echo anaconda upload "${root}/conda-bld/plat/${pkg}"
+    anaconda upload "${root}/conda-bld/${plat}/${pkg}"
 done
 

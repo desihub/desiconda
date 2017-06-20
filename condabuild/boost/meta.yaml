@@ -15,14 +15,14 @@ build:
 
 requirements:
   build:
-    - python
+    - python >=3.5,<3.6
     - icu 54.*          [unix]
     - bzip2             [unix]
     - zlib
   run:
     # python dependency is here due to libboost-python library that depends on
     # python version
-    - python
+    - python >=3.5,<3.6
     - icu 54.*          [unix]
     - zlib
 
