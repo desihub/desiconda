@@ -9,17 +9,17 @@ source:
 requirements:
   build:
     - python >=3.5,<3.6
-    - cfitsio
+    - cfitsio 3.41
     - mkl
     - numpy
-    - boost
+    - boost 1.61.0
 
   run:
     - python >=3.5,<3.6
-    - cfitsio
+    - cfitsio 3.41
     - mkl
     - numpy
-    - boost
+    - boost 1.61.0
 
 about:
   home: https://github.com/tskisner/HARP
