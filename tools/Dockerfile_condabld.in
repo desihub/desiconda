@@ -44,6 +44,10 @@ RUN conda install --copy --yes conda-build anaconda-client
 
 ADD dockerdata/mkl_11.3.3_include.tar.gz /conda/include/
 
+# Copy the condarc
+
+COPY dockerdata/condarc /root/.condarc
+
 # Make the mount point for package recipes
 
 RUN mkdir -p condabuild

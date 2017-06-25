@@ -1,0 +1,5 @@
+channels:
+  - file:///conda/conda-bld
+  - tskisner
+  - astropy
+  - defaults
