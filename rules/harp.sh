@@ -1,7 +1,7 @@
-curl -SL https://github.com/tskisner/HARP/releases/download/v1.0.2/harp-1.0.2.tar.bz2 \
-    -o harp-1.0.2.tar.bz2 \
-    && tar xjf harp-1.0.2.tar.bz2 \
-    && cd harp-1.0.2 \
+curl -SL https://github.com/tskisner/HARP/releases/download/v1.0.3/harp-1.0.3.tar.bz2 \
+    -o harp-1.0.3.tar.bz2 \
+    && tar xjf harp-1.0.3.tar.bz2 \
+    && cd harp-1.0.3 \
     && CC="@CC@" CXX="@CXX@" CFLAGS="@CFLAGS@" CXXFLAGS="@CXXFLAGS@" ./configure @CROSS@ \
     --disable-mpi --disable-python \
     --with-cfitsio="@AUX_PREFIX@" \
