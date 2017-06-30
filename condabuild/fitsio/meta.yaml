@@ -9,11 +9,13 @@ source:
 requirements:
   build:
     - python >=3.5,<3.6
+    - cfitsio
     - setuptools
     - numpy
 
   run:
     - python >=3.5,<3.6
+    - cfitsio
     - setuptools
     - numpy
 
