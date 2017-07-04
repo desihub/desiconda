@@ -6,6 +6,9 @@ source:
   fn: healpix-autotools-3.31.2.tar.gz
   url: https://github.com/tskisner/healpix-autotools/releases/download/v3.31.2/healpix-autotools-3.31.2.tar.gz
 
+build:
+  number: 0
+
 requirements:
   build:
     - python >=3.5,<3.6

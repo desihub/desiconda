@@ -7,7 +7,7 @@ cfitsio-3.41-0.tar.bz2 \
 fftw-3.3.5-0.tar.bz2 \
 healpix-3.31.2-0.tar.bz2 \
 boost-1.61.0-0.tar.bz2 \
-harp-1.0.4-0.tar.bz2 \
+harp-1.0.5-0.tar.bz2 \
 "
 
 root="$(dirname $(which conda))/.."

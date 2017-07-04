@@ -6,6 +6,9 @@ source:
   fn: fitsio-0.9.12rc1.tar.gz
   url: https://github.com/esheldon/fitsio/archive/v0.9.12rc1.tar.gz
 
+build:
+  number: 0
+
 requirements:
   build:
     - python >=3.5,<3.6
