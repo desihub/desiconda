@@ -47,6 +47,7 @@ ifeq "$(DOCKERCHECK)" "docker"
 else
   SPECTRO := install_spectro_$(CONFIG).sh
   SURVEY := install_imaging_$(CONFIG).sh
+  MINIMAL := install_minimal_$(CONFIG).sh
   ifndef PREFIX
     PREFIX := $(error PREFIX undefined)undefined
   endif
@@ -82,6 +83,9 @@ spectro : $(CONFIG_FILE) $(TOOLS) $(SPECTRO)
 imaging : $(CONFIG_FILE) $(TOOLS) $(SURVEY)
 	@echo "" >/dev/null
 
+minimal : $(CONFIG_FILE) $(TOOLS) $(MINIMAL)
+	@echo "" >/dev/null
+
 condabld : $(CONFIG_FILE) $(TOOLS) $(CBUILD)
 	@echo "" >/dev/null
 
@@ -110,6 +114,13 @@ install_imaging_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install_imaging.template
 	&& ./tools/apply_conf.sh "install_imaging_$(CONFIG).sh.modtemplate" "install_imaging_$(CONFIG).sh.module" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
 	&& ./tools/apply_conf.sh tools/version.in "install_imaging_$(CONFIG).sh.modversion" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no
 
+install_minimal_$(CONFIG).sh : $(CONFIG_FILE) $(TOOLS) install_minimal.template
+	@./tools/apply_conf.sh install_minimal.template "install_minimal_$(CONFIG).sh" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
+	&& chmod +x "install_minimal_$(CONFIG).sh" \
+	&& ./tools/gen_modulefile.sh tools/modulefile.in "install_minimal_$(CONFIG).sh.modtemplate" "$(CONFIG_FILE).module" \
+	&& ./tools/apply_conf.sh "install_minimal_$(CONFIG).sh.modtemplate" "install_minimal_$(CONFIG).sh.module" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no \
+	&& ./tools/apply_conf.sh tools/version.in "install_minimal_$(CONFIG).sh.modversion" "$(CONFIG_FILE)" "$(PREFIX)" "$(VERSION)" "$(MODULEDIR)" no
+
 
 Dockerfile_spectro.template : tools/Dockerfile_spectro.in $(rules_full) $(TOOLS)
 	@./tools/gen_template.sh tools/Dockerfile_spectro.in Dockerfile_spectro.template "$(rules)" RUN
@@ -123,6 +134,9 @@ Dockerfile_condabld.template : tools/Dockerfile_condabld.in $(rules_full) $(TOOL
 
 install_spectro.template : tools/install_spectro.in $(rules_full) $(TOOLS)
 	@./tools/gen_template.sh tools/install_spectro.in install_spectro.template "$(rules)"
+
+install_minimal.template : tools/install_minimal.in $(rules_full) $(TOOLS)
+	@./tools/gen_template.sh tools/install_minimal.in install_minimal.template "$(rules)"
 
 install_imaging.template : tools/install_imaging.in $(rules_full) $(TOOLS)
 	@./tools/gen_template.sh tools/install_imaging.in install_imaging.template "$(rules)"
