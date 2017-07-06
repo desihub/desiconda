@@ -65,6 +65,12 @@ fi
 
 @automake@
 
+# MPICH if needed
+
+if [ "x@BUILD_MPI@" = "xyes" ]; then
+@mpich@
+fi
+
 # Install mpi4py.
 
 @mpi4py@

@@ -7,9 +7,12 @@ FC = gfortran
 
 # MPI compilers
 
+BUILD_MPI = yes
 MPICC = mpicc
 MPICXX = mpicxx
 MPIFC = mpifc
+MPI_CXXLIB = mpichcxx
+MPI_LIB = mpich
 
 # Compile flags
 
@@ -30,13 +33,6 @@ CROSS =
 INTEL_CONDA = no
 MINICONDA = https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 PYVERSION = 3.5
-
-# System-installed OpenMPI
-
-MPI_CPPFLAGS = /usr/include/mpi
-MPI_LDFLAGS = /usr/lib
-MPI_CXXLIB = mpi++
-MPI_LIB = mpi
 
 # For BLAS/LAPACK, we use the conda-installed MKL
 
