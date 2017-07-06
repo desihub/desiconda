@@ -72,6 +72,7 @@ help :
 	@echo " "
 	@echo "    spectro  : Build the install script or Dockerfile for the spectro pipeline."
 	@echo "    imaging  : Build the install script or Dockerfile for the imaging survey."
+	@echo "    minimal  : Build the install script for minimal conda base."
 	@echo "    condabld : Build the Dockerfile for use in conda builds."
 	@echo "    clean    : Clean all generated files."
 	@echo " "
