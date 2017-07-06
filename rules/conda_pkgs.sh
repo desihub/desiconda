@@ -16,6 +16,8 @@ conda install --copy --yes \
     ephem \
     psycopg2 \
     numba=0.28.1 \
+    scikit-learn \
+    scikit-image \
     && conda install --copy --yes -c defaults \
     ipython ipython-notebook \
     && rm -rf @CONDA_PREFIX@/pkgs/*
