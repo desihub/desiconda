@@ -6,6 +6,7 @@ curl -SL https://github.com/tskisner/HARP/releases/download/v1.0.5/harp-1.0.5.ta
     --disable-mpi --disable-python \
     --with-cfitsio="@AUX_PREFIX@" \
     --with-boost="@AUX_PREFIX@" \
+    --with-blas="@BLAS@" \
     --with-lapack="@LAPACK@" \
     --prefix=@AUX_PREFIX@ \
     && make -j 4 && make install \
