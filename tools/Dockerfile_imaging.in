@@ -52,9 +52,9 @@ ENV ACCEPT_INTEL_PYTHON_EULA yes
 
 @pip_pkgs@
 
-# Copy MKL headers into conda root
+# Install MKL headers
 
-ADD dockerdata/mkl_11.3.3_include.tar.gz /usr/include/
+@conda_mkl@
 
 # The conda TCL packages overwrite the system-installed regex.h.  So
 # now we force reinstall of the package that provides that

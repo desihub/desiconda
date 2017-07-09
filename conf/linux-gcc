@@ -40,8 +40,9 @@ MPI_LIB = mpi
 
 # For BLAS/LAPACK, we use the conda-installed MKL
 
-BLAS_INCLUDE = @CONDA_PREFIX@/include
-BLAS = -L@CONDA_PREFIX@/lib -lmkl_rt -fopenmp -lpthread -lm -ldl
+CONDA_MKL = yes
+BLAS_INCLUDE = @AUX_PREFIX@/include
+BLAS = -L@AUX_PREFIX@/lib -lmkl_rt -fopenmp -lpthread -lm -ldl
 LAPACK =
 
 # Boost toolchain name

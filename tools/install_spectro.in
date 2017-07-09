@@ -16,8 +16,13 @@ fi
 
 mkdir -p @CONDA_PREFIX@/bin
 mkdir -p @CONDA_PREFIX@/lib
+mkdir -p @AUX_PREFIX@/include
 mkdir -p @AUX_PREFIX@/lib/python@PYVERSION@/site-packages
-ln -s @AUX_PREFIX@/lib @AUX_PREFIX@/lib64
+pushd @AUX_PREFIX@
+if [ ! -e lib64 ]; then
+    ln -s lib lib64
+fi
+popd > /dev/null
 
 export PATH=@AUX_PREFIX@/bin:@CONDA_PREFIX@/bin:${PATH}
 export CPATH=@AUX_PREFIX@/include:${CPATH}
@@ -45,6 +50,12 @@ conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 # Install pip packages.
 
 @pip_pkgs@
+
+# Setup conda MKL links
+
+if [ "x@CONDA_MKL@" = "xyes" ]; then
+@conda_mkl@
+fi
 
 # Copy patches
 

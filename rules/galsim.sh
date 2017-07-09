@@ -10,7 +10,7 @@ curl -SL https://github.com/GalSim-developers/GalSim/archive/v1.4.3.tar.gz \
     TMV_DIR="@AUX_PREFIX@" \
     PYTHON="@CONDA_PREFIX@/bin/python" \
     EXTRA_INCLUDE_PATH="@AUX_PREFIX@/include" \
-    EXTRA_LIB_PATH="@AUX_PREFIX@/lib" \
+    EXTRA_LIB_PATH="@AUX_PREFIX@/lib:@CONDA_PREFIX@/lib" \
     && scons PREFIX="@AUX_PREFIX@" install \
     && cd .. \
     && rm -rf GalSim*
