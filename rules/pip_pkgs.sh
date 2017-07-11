@@ -1,5 +1,5 @@
 pip install --no-binary :all: \
-    fitsio \
     speclite \
     hpsspy \
-    photutils
+    photutils \
+    https://github.com/esheldon/fitsio/archive/v0.9.12rc1.zip
