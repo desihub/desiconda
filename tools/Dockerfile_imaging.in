@@ -82,6 +82,8 @@ ADD rules/patch_* ./rules/
 
 @cfitsio@
 
+@fitsverify@
+
 # Install FFTW.
 
 @fftw@

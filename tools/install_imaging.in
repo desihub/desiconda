@@ -91,6 +91,8 @@ fi
 
 @cfitsio@
 
+@fitsverify@
+
 # Install FFTW.
 
 @fftw@
