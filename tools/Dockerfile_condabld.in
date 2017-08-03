@@ -44,16 +44,17 @@ RUN conda install --copy --yes conda-build anaconda-client
 
 @conda_mkl@
 
-# Copy the condarc
+# Copy the entry point and setup scripts
 
-COPY dockerdata/condarc /root/.condarc
+COPY dockerdata/entrypoint.sh /
+COPY dockerdata/setup.sh /
 
-# Make the mount point for package recipes
+# Make the mount point for source trees
 
-RUN mkdir -p condabuild
+RUN mkdir -p work
 
 # Set the entrypoint and default command
 
-ENTRYPOINT ["/bin/bash", "-c"]
-CMD ["/bin/bash"]
+ENTRYPOINT ["/entrypoint.sh"]
+CMD ["--help"]
 
