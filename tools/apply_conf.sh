@@ -8,8 +8,8 @@ version=$5
 moddir=$6
 docker=$7
 
-compiled_prefix="${prefix}/desiconda/${version}_aux"
-conda_prefix="${prefix}/desiconda/${version}_conda"
+compiled_prefix="${prefix}/aux"
+conda_prefix="${prefix}/conda"
 module_dir="${moddir}/desiconda"
 
 if [ "x${docker}" = "xyes" ]; then
