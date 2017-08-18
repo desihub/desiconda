@@ -15,7 +15,7 @@ conda install --copy --yes \
     psutil \
     ephem \
     psycopg2 \
-    numba=0.28.1 \
+    numba \
     scikit-learn \
     scikit-image \
     && conda install --copy --yes -c defaults \
