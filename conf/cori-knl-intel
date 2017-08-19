@@ -23,10 +23,7 @@ LDFLAGS = -lpthread -liomp5
 
 # Are we doing a cross-compile?
 
-# Unfortunately, galsim does not support cross compiles, so
-# we have to do a native build.
-CROSS = 
-#CROSS = --build x86_64-pc-linux-gnu --host x86_64-unknown-linux-gnu
+CROSS = --build x86_64-pc-linux-gnu --host x86_64-unknown-linux-gnu
 
 # Miniconda install
 
