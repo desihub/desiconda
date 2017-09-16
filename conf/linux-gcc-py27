@@ -38,12 +38,10 @@ MPI_LDFLAGS = /usr/lib
 MPI_CXXLIB = mpi++
 MPI_LIB = mpi
 
-# For BLAS/LAPACK, we use the conda-installed MKL
+# For BLAS/LAPACK, we use openblas
 
-CONDA_MKL = yes
-BLAS_INCLUDE = @AUX_PREFIX@/include
-BLAS = -L@AUX_PREFIX@/lib -lmkl_rt -fopenmp -lpthread -lm -ldl
-LAPACK =
+BLAS_INCLUDE = 
+BLAS = -lopenblas -fopenmp -lpthread -lm
 
 # Boost toolchain name
 

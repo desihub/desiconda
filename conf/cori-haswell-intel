@@ -13,9 +13,9 @@ MPIFC = ftn
 
 # Compile flags
 
-CFLAGS = -O3 -g -fPIC -xAVX -std=gnu99 -pthread
-CXXFLAGS = -O3 -g -fPIC -xAVX -std=c++11 -pthread
-FCFLAGS = -O3 -g -fPIC -xAVX -fexceptions -pthread
+CFLAGS = -O3 -g -fPIC -xcore-avx2 -std=gnu99 -pthread
+CXXFLAGS = -O3 -g -fPIC -xcore-avx2 -std=c++11 -pthread
+FCFLAGS = -O3 -g -fPIC -xcore-avx2 -fexceptions -pthread
 
 OPENMP_CFLAGS = -qopenmp
 OPENMP_CXXFLAGS = -qopenmp
@@ -29,7 +29,7 @@ CROSS =
 
 INTEL_CONDA = yes
 MINICONDA = https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-PYVERSION = 3.5
+PYVERSION = 3.6
 
 # Use Cray MPICH
 
@@ -41,7 +41,7 @@ MPI_LIB = mpich
 # For BLAS/LAPACK, use MKL
 
 BLAS_INCLUDE = ${MKLROOT}/include
-BLAS = -L${MKLROOT}/lib/intel64 -lmkl_rt -fopenmp -lpthread -lmemkind -lm -ldl
+BLAS = -L${MKLROOT}/lib/intel64 -lmkl_rt -fopenmp -lpthread -lm -ldl
 LAPACK = 
 
 # Boost toolchain name

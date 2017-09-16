@@ -38,10 +38,10 @@ MPI_LDFLAGS = ${CRAY_MPICH2_DIR}/lib
 MPI_CXXLIB = mpichcxx
 MPI_LIB = mpich
 
-# For BLAS/LAPACK, we use MKL
+# For BLAS/LAPACK, we use openblas
 
-BLAS_INCLUDE = ${MKLROOT}/include
-BLAS = -L${MKLROOT}/lib/intel64 -lmkl_rt -fopenmp -lpthread -lm -ldl
+BLAS_INCLUDE = 
+BLAS = -lopenblas -fopenmp -lpthread -lm
 LAPACK = 
 
 # Boost toolchain name

@@ -11,7 +11,7 @@ SHELL ["/bin/bash", "-c"]
 RUN apt-get update \
     && apt-get install -y curl procps build-essential gfortran git subversion \
     python libcairo2-dev libpixman-1-dev libgsl-dev flex pkg-config cmake \
-    autoconf m4 libtool automake locales \
+    autoconf m4 libtool automake locales libopenblas-dev \
     && rm -fr /var/lib/apt/lists/*
 
 # Set up locales, to workaround a pip bug
@@ -30,6 +30,12 @@ ENV LC_ALL en_US.UTF-8
 
 RUN mkdir /usr/src/desi
 WORKDIR /usr/src/desi
+
+# Install Intel compiler if desired
+
+if [ "x@INTEL_COMPILER@" = "xyes" ]; then
+@intel@
+fi
 
 # Install conda root environment
 

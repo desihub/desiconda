@@ -93,6 +93,10 @@ fi
 
 @fitsverify@
 
+# Install OpenBLAS
+
+@openblas@
+
 # Install FFTW.
 
 @fftw@

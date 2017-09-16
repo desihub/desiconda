@@ -17,7 +17,7 @@ LDFLAGS = -lpthread -fopenmp
 
 INTEL_CONDA = yes
 MINICONDA = https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
-PYVERSION = 3.5
+PYVERSION = 3.6
 
 CROSS =
 
@@ -26,9 +26,9 @@ MPI_LDFLAGS = /usr/lib
 MPI_CXXLIB = mpichcxx
 MPI_LIB = mpich
 
-BLAS_INCLUDE = /usr/include
-BLAS = -L/usr/lib -lmkl_rt -fopenmp -lpthread -lm -ldl
-LAPACK = 
+BLAS_INCLUDE = 
+BLAS = -lopenblas -lm
+LAPACK = -llapack
 
 BOOSTCHAIN = gcc
 
