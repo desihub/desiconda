@@ -16,6 +16,7 @@ conda install --copy --yes \
     ephem \
     psycopg2 \
     numba \
+    sqlalchemy \
     scikit-learn \
     scikit-image \
     && conda install --copy --yes -c defaults \

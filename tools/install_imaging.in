@@ -175,6 +175,8 @@ ln -s "@AUX_PREFIX@/lib/python@PYVERSION@/site-packages" "@AUX_PREFIX@/lib/pytho
 
 @scamp@
 
+@swarp@
+
 # Remove patches if needed
 
 if [ ! -e ./conf ]; then
