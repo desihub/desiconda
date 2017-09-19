@@ -21,6 +21,5 @@ conda install --copy --yes \
     sqlalchemy \
     scikit-learn \
     scikit-image \
-    && conda install --copy --yes -c defaults \
-    ipython ipython-notebook \
+    ipython \
     && rm -rf @CONDA_PREFIX@/pkgs/*
