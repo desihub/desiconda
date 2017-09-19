@@ -15,6 +15,8 @@ conda install --copy --yes \
     psutil \
     ephem \
     psycopg2 \
+    pytest \
+    pytest-cov \
     numba \
     sqlalchemy \
     scikit-learn \
