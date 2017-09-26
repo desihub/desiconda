@@ -52,5 +52,5 @@ BOOSTCHAIN = intel-linux
 # Group and permissions to set
 
 CHGRP = desi
-CHMOD = a+rX,g-w,o-w
+CHMOD = "u=rwX,g=rX,o-rwx"
 

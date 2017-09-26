@@ -46,5 +46,6 @@ BOOSTCHAIN = gcc
 
 # Group and permissions to set
 
-CHGRP =
-CHMOD = 
+CHGRP = desi
+CHMOD = "u=rwX,g=rX,o-rwx"
+
