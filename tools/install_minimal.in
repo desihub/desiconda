@@ -72,6 +72,22 @@ fi
 pip install --no-binary :all: \
     healpy \
 
+# Autotools
+
+@m4@
+
+@libtool@
+
+@autoconf@
+
+@automake@
+
+# Install CFITSIO.
+
+@cfitsio@
+
+@fitsverify@
+
 # Remove patches if needed
 
 if [ ! -e ./conf ]; then
