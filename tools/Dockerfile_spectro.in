@@ -58,10 +58,6 @@ ENV ACCEPT_INTEL_PYTHON_EULA yes
 
 @pip_pkgs@
 
-# Install MKL headers
-
-@conda_mkl@
-
 # The conda TCL packages overwrite the system-installed regex.h.  So
 # now we force reinstall of the package that provides that
 

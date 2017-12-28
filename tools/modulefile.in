@@ -20,6 +20,16 @@ conflict desiconda
 
 @modload@
 
+# altd is evil and causes random job hangs
+if [ is-loaded altd ] {
+  module unload altd
+}
+
+# darshan is useless at best and may cause overhead
+if [ is-loaded darshan ] {
+  module unload darshan
+}
+
 # This is set by OS python and gives us problems.
 unsetenv PYTHONSTARTUP
 

@@ -52,12 +52,6 @@ conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 
 @pip_pkgs@
 
-# Setup conda MKL links
-
-if [ "x@CONDA_MKL@" = "xyes" ]; then
-@conda_mkl@
-fi
-
 # Copy patches
 
 if [ ! -e ./conf ]; then

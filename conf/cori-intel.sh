@@ -10,7 +10,9 @@ if [ "x${loadedintel}" = x ]; then
       module swap PrgEnv-gnu PrgEnv-intel
     fi
 fi
-module swap intel intel/17.0.2.174
+module unload darshan
+module unload altd
+module swap intel intel/18.0.0.128
 module load gcc/6.3.0
 module load cmake
 module load git

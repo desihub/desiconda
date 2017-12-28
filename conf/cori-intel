@@ -14,9 +14,9 @@ MPIFC = ftn
 
 # Compile flags
 
-CFLAGS = -O3 -g -fPIC -xcore-avx2 -std=gnu99 -pthread
-CXXFLAGS = -O3 -g -fPIC -xcore-avx2 -std=c++11 -pthread
-FCFLAGS = -O3 -g -fPIC -xcore-avx2 -fexceptions -pthread
+CFLAGS = -O3 -g -fPIC -xAVX -axMIC-AVX512 -std=gnu99 -pthread
+CXXFLAGS = -O3 -g -fPIC -xAVX -axMIC-AVX512 -std=c++11 -pthread
+FCFLAGS = -O3 -g -fPIC -xAVX -axMIC-AVX512 -fexceptions -pthread -heap-arrays 16
 
 OPENMP_CFLAGS = -qopenmp
 OPENMP_CXXFLAGS = -qopenmp
@@ -24,7 +24,7 @@ LDFLAGS = -lpthread -liomp5
 
 # Are we doing a cross-compile?
 
-CROSS =
+CROSS = 
 
 # Miniconda install
 
@@ -42,7 +42,7 @@ MPI_LIB = mpich
 # For BLAS/LAPACK, use MKL
 
 BLAS_INCLUDE = ${MKLROOT}/include
-BLAS = -L${MKLROOT}/lib/intel64 -lmkl_rt -fopenmp -lpthread -lm -ldl
+BLAS = -L${MKLROOT}/lib/intel64 -lmkl_rt -fopenmp -lpthread -limf -lsvml -ldl
 LAPACK = 
 
 # Boost toolchain name

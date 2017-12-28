@@ -10,6 +10,8 @@ if [ "x${loadedgnu}" = x ]; then
       module swap PrgEnv-intel PrgEnv-gnu
     fi
 fi
+module unload darshan
+module unload altd
 module swap gcc gcc/6.3.0
 module load cmake
 module load git
