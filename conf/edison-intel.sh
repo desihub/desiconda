@@ -12,8 +12,8 @@ if [ "x${loadedintel}" = x ]; then
 fi
 module unload darshan
 module unload altd
-module swap intel intel/18.0.0.128
-module load gcc/6.3.0
+module swap intel intel/18.0.1.163
+module load gcc/7.2.0
 module load cmake
 module load git
 export CRAYPE_LINK_TYPE=dynamic
