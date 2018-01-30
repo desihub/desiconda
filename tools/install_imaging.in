@@ -185,6 +185,12 @@ fi
 python@PYVERSION@ -m compileall -f "@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages"
 python@PYVERSION@ -m compileall -f "@AUX_PREFIX@"
 
+# Import packages that may need to generate files in the
+# install prefix
+
+python@PYVERSION@ -c "import astropy"
+python@PYVERSION@ -c "import matplotlib.font_manager as fm; f = fm.FontManager"
+
 # Set permissions
 
 if [ "x@CHGRP@" != "x" ]; then
