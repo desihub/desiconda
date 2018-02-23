@@ -22,6 +22,7 @@ conda install --copy --yes \
     scikit-learn \
     scikit-image \
     ipython \
+    jupyter \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
