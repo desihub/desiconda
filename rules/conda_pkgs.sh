@@ -9,7 +9,7 @@ conda install --copy --yes \
     basemap \
     seaborn \
     pyyaml \
-    astropy=1.3.3 \
+    astropy=2 \
     hdf5 \
     h5py \
     psutil \
