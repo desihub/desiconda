@@ -22,8 +22,8 @@ conda install --copy --yes \
     scikit-image \
     ipython \
     jupyter \
+    && conda install -c conda-forge --copy --yes basemap \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
-    && conda install -c conda-forge --copy --yes basemap \
     && rm -rf @CONDA_PREFIX@/pkgs/*
