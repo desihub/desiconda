@@ -5,7 +5,8 @@ conda install --copy --yes \
     cython \
     numpy \
     scipy \
-    matplotlib \
+    matplotlib=2.1.2 \
+    basemap \
     seaborn \
     pyyaml \
     astropy=2 \
@@ -22,7 +23,6 @@ conda install --copy --yes \
     scikit-image \
     ipython \
     jupyter \
-    && conda install -c conda-forge --copy --yes basemap \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
