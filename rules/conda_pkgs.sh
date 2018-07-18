@@ -5,10 +5,11 @@ conda install --copy --yes \
     cython \
     numpy \
     scipy \
-    matplotlib \
+    matplotlib=2.1.2 \
+    basemap \
     seaborn \
     pyyaml \
-    astropy=1.3.3 \
+    astropy=2 \
     hdf5 \
     h5py \
     psutil \
@@ -22,7 +23,8 @@ conda install --copy --yes \
     scikit-image \
     ipython \
     jupyter \
-    && conda install -c conda-forge --copy --yes basemap \
+    ipywidgets=6.0.0 \
+    bokeh \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
