@@ -23,6 +23,8 @@ conda install --copy --yes \
     scikit-image \
     ipython \
     jupyter \
+    ipywidgets=6.0.0 \
+    bokeh \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
