@@ -218,3 +218,16 @@ if [ "x@MODULE_DIR@" != "x" ]; then
         chmod -R @CHMOD@ "@MODULE_DIR@"
     fi
 fi
+
+# Install plain shell setup (if modules are not used)
+
+setupfile="@CONDA_PREFIX@/../setup_desiconda.sh"
+echo "# Load desiconda into the environment" > ${setupfile}
+echo "export PATH=@AUX_PREFIX@/bin:@CONDA_PREFIX@/bin:\${PATH}" >> ${setupfile}
+echo "export CPATH=@AUX_PREFIX@/include:\${CPATH}" >> ${setupfile}
+echo "export LIBRARY_PATH=@AUX_PREFIX@/lib:\${LIBRARY_PATH}" >> ${setupfile}
+echo "export LD_LIBRARY_PATH=@AUX_PREFIX@/lib:\${LD_LIBRARY_PATH}" >> ${setupfile}
+echo "export PYTHONPATH=@AUX_PREFIX@/lib/python@PYVERSION@/site-packages" >> ${setupfile}
+echo "export PKG_CONFIG_PATH=@AUX_PREFIX@/lib/pkgconfig:\${PKG_CONFIG_PATH}" >> ${setupfile}
+echo "export PKG_CONFIG_PATH=@AUX_PREFIX@/share/pkgconfig:\${PKG_CONFIG_PATH}" >> ${setupfile}
+echo "" >> ${setupfile}
