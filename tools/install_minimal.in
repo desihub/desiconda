@@ -62,11 +62,6 @@ if [ ! -e ./conf ]; then
     cp ${topdir}/rules/patch_* ./rules/
 fi
 
-# Rather than compile healpix to get healpy, we just pip install
-
-pip install --no-binary :all: \
-    healpy \
-
 # Autotools
 
 @m4@

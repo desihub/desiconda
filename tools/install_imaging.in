@@ -102,10 +102,6 @@ fi
 
 @boost@
 
-# Install healpix
-
-@healpix@
-
 # GalSim and dependencies
 
 @scons@

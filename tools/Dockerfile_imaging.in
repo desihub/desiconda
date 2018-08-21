@@ -17,8 +17,8 @@ RUN apt-get update \
 # Set up locales, to workaround a pip bug
 
 RUN locale-gen en_US.UTF-8
-ENV LANG en_US.UTF-8 
-ENV LANGUAGE en_US:en 
+ENV LANG en_US.UTF-8
+ENV LANGUAGE en_US:en
 ENV LC_ALL en_US.UTF-8
 
 # We install everything directly into /usr so that we do
@@ -87,10 +87,6 @@ ADD rules/patch_* ./rules/
 # Install BOOST.
 
 @boost@
-
-# Install healpix
-
-@healpix@
 
 # GalSim and dependencies
 
@@ -184,4 +180,3 @@ RUN python -c "import matplotlib.font_manager as fm; f = fm.FontManager"
 
 ENTRYPOINT ["/bin/bash", "-c"]
 CMD ["/bin/bash"]
-

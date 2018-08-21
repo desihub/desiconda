@@ -106,10 +106,6 @@ fi
 
 @harp@
 
-# Install healpix
-
-@healpix@
-
 # Install PyMPIT for environment testing
 
 @pympit@
