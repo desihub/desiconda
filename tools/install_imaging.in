@@ -92,7 +92,7 @@ fi
 
 # Install OpenBLAS
 
-if [ "x@INTEL_COMP@" != "xyes"]; then
+if [ "x@INTEL_COMP@" != "xyes" ]; then
 @openblas@
 fi
 
