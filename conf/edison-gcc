@@ -1,6 +1,7 @@
 
 # Serial compilers
 
+INTEL_COMP = no
 CC = gcc
 CXX = g++
 FC = gfortran
@@ -40,9 +41,9 @@ MPI_LIB = mpich
 
 # For BLAS/LAPACK, we use openblas
 
-BLAS_INCLUDE = 
+BLAS_INCLUDE =
 BLAS = -lopenblas -fopenmp -lpthread -lm
-LAPACK = 
+LAPACK =
 
 # Boost toolchain name
 
@@ -52,4 +53,3 @@ BOOSTCHAIN = gcc
 
 CHGRP = desi
 CHMOD = "u=rwX,g=rX,o-rwx"
-

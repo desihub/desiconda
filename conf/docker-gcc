@@ -1,4 +1,5 @@
 
+INTEL_COMP = no
 CC = gcc
 CXX = g++
 FC = gfortran
@@ -26,9 +27,8 @@ MPI_LDFLAGS = /usr/lib
 MPI_CXXLIB = mpichcxx
 MPI_LIB = mpich
 
-BLAS_INCLUDE = 
+BLAS_INCLUDE =
 BLAS = -lopenblas -lm
 LAPACK = -llapack
 
 BOOSTCHAIN = gcc
-
