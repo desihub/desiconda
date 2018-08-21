@@ -5,6 +5,8 @@
 pushd $(dirname $0) > /dev/null
 topdir=$(pwd)
 popd > /dev/null
+scriptname=$(basename $0)
+fullscript="${topdir}/${scriptname}"
 
 # Initialize environment
 
@@ -152,8 +154,8 @@ fi
 
 if [ "x@MODULE_DIR@" != "x" ]; then
     mkdir -p "@MODULE_DIR@"
-    cp "$0.module" "@MODULE_DIR@/@VERSION@"
-    cp "$0.modversion" "@MODULE_DIR@/.version_@VERSION@"
+    cp "${fullscript}.module" "@MODULE_DIR@/@VERSION@"
+    cp "${fullscript}.modversion" "@MODULE_DIR@/.version_@VERSION@"
 
     if [ "x@CHGRP@" != "x" ]; then
         chgrp -R @CHGRP@ "@MODULE_DIR@"
