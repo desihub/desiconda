@@ -37,7 +37,7 @@ PYVERSION = 3.6
 # For BLAS/LAPACK, we use openblas
 
 BLAS_INCLUDE = 
-BLAS = -lopenblas -fopenmp -lpthread -lm
+BLAS = -lopenblas -fopenmp -lpthread -lgfortran -lm
 LAPACK =
 
 # Boost toolchain name
