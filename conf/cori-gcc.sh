@@ -11,7 +11,6 @@ if [ "x${loadedgnu}" = x ]; then
 fi
 module unload darshan
 module unload altd
-module swap gcc gcc/7.2.0
 module load cmake
 module load git
 export CRAYPE_LINK_TYPE=dynamic
