@@ -27,8 +27,8 @@ MPI_LDFLAGS = /usr/lib
 MPI_CXXLIB = mpichcxx
 MPI_LIB = mpich
 
-BLAS_INCLUDE =
-BLAS = -lopenblas -lm
-LAPACK = -llapack
+BLAS_INCLUDE = /usr/include
+BLAS = -lm -lblas
+LAPACK = -llapack -llapacke
 
 BOOSTCHAIN = gcc
