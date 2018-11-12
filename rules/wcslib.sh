@@ -1,7 +1,7 @@
-curl -SL ftp://ftp.atnf.csiro.au/pub/software/wcslib/wcslib-5.16.tar.bz2 \
-    -o wcslib-5.16.tar.bz2 \
-    && tar xjf wcslib-5.16.tar.bz2 \
-    && cd wcslib-5.16 \
+curl -SL ftp://ftp.atnf.csiro.au/pub/software/wcslib/wcslib-5.20.tar.bz2 \
+    -o wcslib-5.20.tar.bz2 \
+    && tar xjf wcslib-5.20.tar.bz2 \
+    && cd wcslib-5.20 \
     && chmod -R u+w . \
     && patch -p1 < ../rules/patch_wcslib \
     && autoconf \
