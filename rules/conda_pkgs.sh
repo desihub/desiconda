@@ -3,6 +3,7 @@ conda install --copy --yes \
     requests \
     future \
     cython \
+    cmake \
     numpy \
     scipy \
     matplotlib=2.1.2 \
