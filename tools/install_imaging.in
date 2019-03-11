@@ -148,6 +148,8 @@ fi
 
 @ceres@
 
+@qdo@
+
 # astrometry.net
 # This package and tractor install python tools to a "lib/python"
 # directory rather than site-packages.  Make a symlink here.

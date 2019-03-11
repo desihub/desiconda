@@ -1,6 +1,6 @@
-curl -SL https://github.com/dstndstn/astrometry.net/archive/0.74.tar.gz -o astrometry.net-0.74.tar.gz \
-    && tar xzf astrometry.net-0.74.tar.gz \
-    && cd astrometry.net-0.74 \
+curl -SL https://github.com/dstndstn/astrometry.net/archive/0.77.tar.gz -o astrometry.net-0.77.tar.gz \
+    && tar xzf astrometry.net-0.77.tar.gz \
+    && cd astrometry.net-0.77 \
     && CC="@CC@" CXX="@CXX@" CFLAGS="@CFLAGS@" CXXFLAGS="@CXXFLAGS@" \
     LDFLAGS="-L@AUX_PREFIX@/lib -lz" LDSHARED="@CC@ -shared" \
     WCSLIB_INC="-I@AUX_PREFIX@/include/wcslib" \
