@@ -6,7 +6,7 @@ conda install --copy --yes \
     cmake \
     numpy \
     scipy \
-    matplotlib=2.1.2 \
+    matplotlib \
     basemap \
     seaborn \
     pyyaml \
@@ -24,7 +24,7 @@ conda install --copy --yes \
     scikit-image \
     ipython \
     jupyter \
-    ipywidgets=6.0.0 \
+    ipywidgets \
     bokeh \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
