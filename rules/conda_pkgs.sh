@@ -6,7 +6,7 @@ conda install --copy --yes \
     cmake \
     numpy \
     scipy \
-    matplotlib \
+    matplotlib=2.1.2 \
     basemap \
     seaborn \
     pyyaml \
@@ -26,6 +26,7 @@ conda install --copy --yes \
     jupyter \
     ipywidgets \
     bokeh \
+    && conda install dask distributed -c conda-forge \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
