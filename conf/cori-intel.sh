@@ -13,6 +13,5 @@ fi
 module unload darshan
 module unload altd
 module load gcc
-module load git
 export CRAYPE_LINK_TYPE=dynamic
 

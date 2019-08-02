@@ -38,6 +38,8 @@ MPI_CPPFLAGS = ${CRAY_MPICH2_DIR}/include
 MPI_LDFLAGS = ${CRAY_MPICH2_DIR}/lib
 MPI_CXXLIB = mpichcxx
 MPI_LIB = mpich
+MPI_EXTRA_COMP =
+MPI_EXTRA_LINK = -shared
 
 # For BLAS/LAPACK, we use openblas
 

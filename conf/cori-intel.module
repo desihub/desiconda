@@ -10,6 +10,7 @@ if [ module-info mode load ] {
     }
   }
   module load gcc
-  module load git
+  module unload darshan
+  module unload altd
   setenv CRAYPE_LINK_TYPE dynamic
 }
