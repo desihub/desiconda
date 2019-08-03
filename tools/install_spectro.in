@@ -42,6 +42,7 @@ unset SUDO_USER SUDO_GID SUDO_UID SUDO_COMMAND
 # Install conda root environment
 
 echo Installing conda root environment at $(date)
+
 @conda_root@
 
 if [ "x@INTEL_CONDA@" = "xyes" ]; then
@@ -51,6 +52,7 @@ fi
 # Install conda packages.
 
 echo Installing conda packages at $(date)
+
 @conda_pkgs@
 
 conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
@@ -58,6 +60,7 @@ conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 # Install pip packages.
 
 echo Installing pip packages at $(date)
+
 @pip_pkgs@
 
 # Copy patches
@@ -91,46 +94,55 @@ fi
 # Install mpi4py.
 
 echo Installing mpi4py at $(date)
+
 @mpi4py@
 
 # Install CFITSIO.
 
 echo Installing cfitsio at $(date)
+
 @cfitsio@
 
 echo Installing fitsverify at $(date)
+
 @fitsverify@
 
 # Install OpenBLAS
 
 if [ "x@INTEL_COMP@" != "xyes" ]; then
 echo Installing OpenBLAS at $(date)
+
 @openblas@
 fi
 
 # Install FFTW.
 
 echo Installing FFTW at $(date)
+
 @fftw@
 
 # Install BOOST.
 
 echo Installing BOOST at $(date)
+
 @boost@
 
 # Install HARP.
 
 echo Installing HARP at $(date)
+
 @harp@
 
 # Install PyMPIT for environment testing
 
 echo Installing PyMPIT at $(date)
+
 @pympit@
 
 # GalSim and dependencies
 
 echo Installing GalSim and friends at $(date)
+
 @scons@
 
 @tmv@
@@ -147,6 +159,7 @@ fi
 # Compile python modules
 
 echo Pre-compiling python modules at $(date)
+
 python@PYVERSION@ -m compileall -f "@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages"
 python@PYVERSION@ -m compileall -f "@AUX_PREFIX@"
 
@@ -154,12 +167,14 @@ python@PYVERSION@ -m compileall -f "@AUX_PREFIX@"
 # install prefix
 
 echo Import python modules that might trigger downloads at $(date)
+
 python@PYVERSION@ -c "import astropy"
 python@PYVERSION@ -c "import matplotlib.font_manager as fm; f = fm.FontManager"
 
 # Set permissions
 
 echo Setting permissions at $(date)
+
 if [ "x@CHGRP@" != "x" ]; then
     chgrp -R @CHGRP@ "@AUX_PREFIX@"
     chgrp -R @CHGRP@ "@CONDA_PREFIX@"
@@ -173,6 +188,7 @@ fi
 # Install modulefile
 
 echo Installing the desiconda modulefile at $(date)
+
 if [ "x@MODULE_DIR@" != "x" ]; then
     mkdir -p "@MODULE_DIR@"
     cp "${fullscript}.module" "@MODULE_DIR@/@VERSION@"
