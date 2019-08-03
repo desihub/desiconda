@@ -37,6 +37,7 @@ unsetenv PYTHONSTARTUP
 prepend-path PATH "@CONDA_PREFIX@/bin"
 setenv PYTHONPATH "@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages"
 setenv DESICONDA "@CONDA_PREFIX@"
+setenv DESICONDA_VERSION "@VERSION@"
 setenv DESICONDA_EXTRA "@AUX_PREFIX@"
 
 # This is the location of the extra compiled software
