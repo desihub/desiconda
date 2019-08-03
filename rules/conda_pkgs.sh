@@ -16,7 +16,7 @@ conda install --copy --yes \
     psutil \
     ephem \
     psycopg2 \
-    pytest \
+    pytest=3.6.2 \
     pytest-cov \
     numba \
     sqlalchemy \
