@@ -40,6 +40,9 @@ setenv DESICONDA "@CONDA_PREFIX@"
 setenv DESICONDA_VERSION "@VERSION@"
 setenv DESICONDA_EXTRA "@AUX_PREFIX@"
 
+# for basemap; see https://github.com/matplotlib/basemap/issues/419
+setenv PROJ_LIB "@CONDA_PREFIX@/share/proj"
+
 # This is the location of the extra compiled software
 prepend-path PATH "@AUX_PREFIX@/bin"
 prepend-path CPATH "@AUX_PREFIX@/include"
