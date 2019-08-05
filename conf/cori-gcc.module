@@ -9,6 +9,8 @@ if [ module-info mode load ] {
       module swap PrgEnv-intel PrgEnv-gnu
     }
   }
-  module load git
+  module unload darshan
+  module unload altd
+  module unload craype-hugepages2M
   setenv CRAYPE_LINK_TYPE dynamic
 }

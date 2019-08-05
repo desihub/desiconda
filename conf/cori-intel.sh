@@ -12,6 +12,7 @@ if [ "x${loadedintel}" = x ]; then
 fi
 module unload darshan
 module unload altd
+module unload craype-hugepages2M
 module load gcc
 export CRAYPE_LINK_TYPE=dynamic
 

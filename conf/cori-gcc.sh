@@ -11,6 +11,6 @@ if [ "x${loadedgnu}" = x ]; then
 fi
 module unload darshan
 module unload altd
-module load git
+module unload craype-hugepages2M
 export CRAYPE_LINK_TYPE=dynamic
 
