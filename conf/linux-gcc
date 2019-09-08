@@ -38,6 +38,8 @@ MPI_CPPFLAGS = /usr/include/mpi
 MPI_LDFLAGS = /usr/lib
 MPI_CXXLIB = mpi++
 MPI_LIB = mpi
+MPI_EXTRA_COMP =
+MPI_EXTRA_LINK =
 
 # For BLAS/LAPACK, we use openblas
 

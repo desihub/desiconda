@@ -11,8 +11,12 @@ BUILD_MPI = yes
 MPICC = mpicc
 MPICXX = mpicxx
 MPIFC = mpifc
+MPI_CPPFLAGS = @AUX_PREFIX@/include
+MPI_LDFLAGS = @AUX_PREFIX@/lib
 MPI_CXXLIB = mpichcxx
 MPI_LIB = mpich
+MPI_EXTRA_COMP =
+MPI_EXTRA_LINK =
 
 # Compile flags
 

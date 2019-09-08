@@ -1,6 +1,7 @@
 
 # Serial compilers
 
+INTEL_COMP = no
 CC = gcc
 CXX = g++
 FC = gfortran
@@ -31,18 +32,21 @@ INTEL_CONDA = no
 MINICONDA = https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh
 PYVERSION = 3.6
 
-# Use system installed OpenMPI
+# Compile MPICH too
 
-MPI_CPPFLAGS = /usr/include/mpi
-MPI_LDFLAGS = /usr/lib
-MPI_CXXLIB = mpi++
-MPI_LIB = mpi
+BUILD_MPI = yes
+MPI_CPPFLAGS = @AUX_PREFIX@/include
+MPI_LDFLAGS = @AUX_PREFIX@/lib
+MPI_CXXLIB = mpichcxx
+MPI_LIB = mpich
+MPI_EXTRA_COMP =
+MPI_EXTRA_LINK =
 
-# For BLAS/LAPACK, we use system installed OpenBLAS and Lapack
+# For BLAS/LAPACK, we use openblas
 
-BLAS_INCLUDE = 
-BLAS = -lopenblas
-LAPACK = -llapack
+BLAS_INCLUDE =
+BLAS = -lopenblas -fopenmp -lpthread -lgfortran -lm
+LAPACK =
 
 # Boost toolchain name
 
@@ -50,6 +54,5 @@ BOOSTCHAIN = gcc
 
 # Group and permissions to set
 
-CHGRP = 
-CHMOD = 
-
+CHGRP =
+CHMOD = a+rX
