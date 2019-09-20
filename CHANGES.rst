@@ -18,10 +18,11 @@ Used to install desiconda/20190804-1.3.0-spec at NERSC and tagged post-facto
 * added dask and distributed conda packages for R&D / exploratory work
 * adds progress messages with timestamps during installation
   as part of the installed modulefile:
-* sets $DESICONDA_VERSION (for convenience; previously this was available
-  by parsing directory paths in $DESICONDA and $DESICONDA_EXTRA, but not
-  as an environment variable with just the version.
-* sets $PROJ_LIB (needed by basemap)
+
+  * sets $DESICONDA_VERSION (for convenience; previously this was available
+    by parsing directory paths in $DESICONDA and $DESICONDA_EXTRA, but not
+    as an environment variable with just the version.
+  * sets $PROJ_LIB (needed by basemap)
 
 1.2.7 and prior
 ---------------
