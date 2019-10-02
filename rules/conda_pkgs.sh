@@ -26,7 +26,7 @@ conda install --copy --yes \
     jupyter \
     ipywidgets \
     bokeh \
-    && conda install dask distributed -c conda-forge \
+    && conda install --copy --yes -c conda-forge dask distributed \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
