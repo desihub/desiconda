@@ -26,6 +26,7 @@ conda install --copy --yes \
     jupyter \
     ipywidgets \
     bokeh \
+    wurlitzer \
     certipy \
     && conda install --copy --yes -c conda-forge dask distributed \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
