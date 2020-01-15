@@ -5,4 +5,5 @@ curl -SL @MINICONDA@ \
     && conda config --remove channels intel \
     && conda install --copy --yes python=@PYVERSION@ \
     && rm miniconda.sh \
-    && rm -rf @CONDA_PREFIX@/pkgs/*
+    && rm -rf @CONDA_PREFIX@/pkgs/* \
+    && rm -f @CONDA_PREFIX@/compiler_compat/ld
