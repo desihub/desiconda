@@ -5,4 +5,4 @@ pip install --no-binary :all: \
     healpy \
     coveralls \
     line_profiler \
-    https://github.com/esheldon/fitsio/archive/v0.9.12rc1.zip
+    fitsio

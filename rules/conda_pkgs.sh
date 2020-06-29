@@ -6,17 +6,17 @@ conda install --copy --yes \
     cmake \
     numpy \
     scipy \
-    matplotlib=2.1.2 \
+    matplotlib \
     basemap \
     seaborn \
     pyyaml \
-    astropy=2 \
+    astropy \
     hdf5 \
     h5py \
     psutil \
     ephem \
     psycopg2 \
-    pytest=3.6.2 \
+    pytest \
     pytest-cov \
     numba \
     sqlalchemy \
@@ -28,6 +28,7 @@ conda install --copy --yes \
     bokeh \
     wurlitzer \
     certipy \
+    sphinx \
     && conda install --copy --yes -c conda-forge dask distributed \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
