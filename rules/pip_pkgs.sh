@@ -5,4 +5,5 @@ pip install --no-binary :all: \
     healpy \
     coveralls \
     line_profiler \
-    fitsio
+    fitsio \
+    cupy-cuda102

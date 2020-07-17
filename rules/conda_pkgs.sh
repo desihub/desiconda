@@ -29,7 +29,9 @@ conda install --copy --yes \
     wurlitzer \
     certipy \
     sphinx \
-    && conda install --copy --yes -c conda-forge dask distributed \
+    iminuit \
+    cudatoolkit \
+    && conda install --copy --yes -c conda-forge dask distributed papermill \
     && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
