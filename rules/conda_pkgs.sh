@@ -6,8 +6,8 @@ conda install --copy --yes \
     cmake \
     numpy \
     scipy \
+    mkl=2020.0 \
     matplotlib \
-    basemap \
     seaborn \
     pyyaml \
     astropy \
