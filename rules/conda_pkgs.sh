@@ -31,8 +31,12 @@ conda install --copy --yes \
     sphinx \
     iminuit \
     cudatoolkit \
-    && conda install --copy --yes -c conda-forge dask distributed papermill \
-    && mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
+&& conda install --copy --yes -c conda-forge \
+    fitsio \
+    dask \
+    distributed \
+    papermill \
+&& mplrc="@CONDA_PREFIX@/lib/python@PYVERSION@/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
-    && rm -rf @CONDA_PREFIX@/pkgs/*
+&& rm -rf @CONDA_PREFIX@/pkgs/*

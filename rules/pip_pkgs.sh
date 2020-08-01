@@ -1,9 +1,9 @@
 pip install --no-binary :all: \
-    speclite \
+    https://github.com/desihub/speclite/archive/v0.9.tar.gz \
     hpsspy \
     photutils \
     healpy \
     coveralls \
-    line_profiler \
-    fitsio \
-    cupy-cuda102
+&& pip install \
+    cupy-cuda102 \
+    line_profiler

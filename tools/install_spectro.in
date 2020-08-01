@@ -2,6 +2,9 @@
 
 echo Starting desiconda installation at $(date)
 
+# print commands as they are run so we know where we are if something fails
+set -x
+
 # Script directory
 
 pushd $(dirname $0) > /dev/null
@@ -55,6 +58,11 @@ echo Installing conda packages at $(date)
 
 @conda_pkgs@
 
+if [ $? != 0 ]; then
+    echo "ERROR installing conda packages; exiting"
+    exit 1
+fi
+
 conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 
 # Install pip packages.
@@ -62,6 +70,11 @@ conda list --export | grep -v conda > "@CONDA_PREFIX@/pkg_list.txt"
 echo Installing pip packages at $(date)
 
 @pip_pkgs@
+
+if [ $? != 0 ]; then
+    echo "ERROR installing pip packages; exiting"
+    exit 1
+fi
 
 # Copy patches
 
