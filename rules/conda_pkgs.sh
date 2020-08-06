@@ -11,6 +11,7 @@ conda install --copy --yes \
     seaborn \
     pyyaml \
     astropy \
+    pytest-astropy \
     hdf5 \
     h5py \
     psutil \
