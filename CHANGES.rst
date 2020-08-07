@@ -2,10 +2,18 @@
 desiconda change Log
 ====================
 
-1.3.1 (unreleased)
+1.4.1 (unreleased)
 ------------------
 
 * No changes yet
+
+1.4.0 (2020-08-07)
+------------------
+
+Used for 20200801-1.4.0-spec installation, but not tagged until Aug 7:
+
+* Upgrade to python 3.8, astropy 4.x, fitsio 1.x, bokeh 2.x;
+  Add iminuit, pycuda, papermill, dask-distributed, and sphinx (PR #40)
 
 1.3.0 (2019-09-20)
 ------------------
