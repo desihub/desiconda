@@ -1,0 +1,8 @@
+
+if [ module-info mode load ] {
+  if [ is-loaded gcc ] {
+  } else {
+    module load gcc
+    module load openmpi
+  }
+}
