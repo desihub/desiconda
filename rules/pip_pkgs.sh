@@ -7,4 +7,5 @@ pip install --no-binary :all: \
 && pip install \
     cupy-cuda102 \
     line_profiler \
-    xlrd
+    xlrd \
+    configobj
