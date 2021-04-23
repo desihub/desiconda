@@ -6,4 +6,6 @@ pip install --no-binary :all: \
     coveralls \
 && pip install \
     cupy-cuda102 \
-    line_profiler
+    line_profiler \
+    xlrd \
+    configobj
