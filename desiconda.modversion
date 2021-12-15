@@ -2,4 +2,4 @@
 ####
 ## version file
 ##
-set ModulesVersion      "@VERSION@"
+set ModulesVersion 2.0.0
