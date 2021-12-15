@@ -2,7 +2,8 @@
 echo Current time $(date) Installing conda packages
 echo condadir is $CONDADIR
 
-conda install --copy --yes -c conda-forge --override-channels \
+conda condig --apend channels anaconda
+conda install --copy --yes -c conda-forge \
     astropy \
     speclite \
     fitsio \
@@ -17,7 +18,9 @@ conda install --copy --yes -c conda-forge --override-channels \
     cmake \
     numpy \
     scipy \
-    mkl=2020.0 \
+    intel-openmp \
+    mkl \
+    mkl-service \
     matplotlib \
     seaborn \
     pyyaml \
@@ -53,8 +56,6 @@ conda install --copy --yes -c conda-forge --override-channels \
     galsim \
     altair \
     vega_datasets \
-&& conda install --copy --yes -c anaconda \
-    intel-openmp \
 && mplrc="$CONDADIR/lib/python$PYVERSION/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
