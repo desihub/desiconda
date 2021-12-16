@@ -18,7 +18,7 @@ To install desiconda and load module::
     mkdir -p $prefix 
 
     local_copy=/global/cfs/cdirs/desi/users/$USER/desiconda
-    git clone -b update https://github.com/desihub/desiconda $local_copy
+    git clone https://github.com/desihub/desiconda $local_copy
     cd $local_copy
     
     DCONDAVERSION=$(data '+%Y%m%d')-2.0.0 PREFIX=$prefix ./install.sh
@@ -32,9 +32,9 @@ Imagine you wanted to install a set of dependencies for DESI software on a
 cluster (rather than manually getting all the dependencies in place).  
 You plan on installing desiconda in your home directory ($HOME/software/desi) and 
 you want to have the custom string "my-desiconda" associated with your installation. 
-You git-cloned this ("update") branch of desiconda using::
+You git-cloned desiconda using::
 
-    git clone -b update https://github.com/desihub/desiconda /path-to-git-clone/desiconda
+    git clone https://github.com/desihub/desiconda /path-to-git-clone/desiconda
 
 You also put all the commands for dependencies you want to install and customizations in the 
 "conf/mypkgs-pkgs.sh" and "conf/myenv-env.sh" files you created (based on the existing 
