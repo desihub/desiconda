@@ -1,15 +1,15 @@
-===========
+=========
 desiconda
-===========
+=========
 
 Introduction
----------------
+------------
 
 This package contains scripts for installing conda and all compiled
 dependencies needed by the spectroscopic pipeline.
 
 Quick start installation 
-----------------
+------------------------
 
 To install desiconda and load module::
 
@@ -20,9 +20,11 @@ To install desiconda and load module::
     local_copy=/global/cfs/cdirs/desi/users/$USER/desiconda
     git clone https://github.com/desihub/desiconda $local_copy
     cd $local_copy
-    
-    DCONDAVERSION=$(data '+%Y%m%d')-2.0.0 PREFIX=$prefix ./install.sh
-    module use $local/desiconda-test/modulefiles
+
+    unset PYTHONPATH
+    export DCONDAVERSION=$(date '+%Y%m%d')-2.0.0
+    PREFIX=$prefix ./install.sh |& tee install.log
+    module use $prefix/$DCONDAVERSION/modulefiles
     module load desiconda
     
 Example
@@ -30,20 +32,22 @@ Example
 
 Imagine you wanted to install a set of dependencies for DESI software on a
 cluster (rather than manually getting all the dependencies in place).  
-You plan on installing desiconda in your home directory ($HOME/software/desi) and 
-you want to have the custom string "my-desiconda" associated with your installation. 
+You plan on installing desiconda in your home directory ($HOME/software/desi)
+and you want to have the custom string "my-desiconda" associated with your
+installation.
+
 You git-cloned desiconda using::
 
     git clone https://github.com/desihub/desiconda /path-to-git-clone/desiconda
 
-You also put all the commands for dependencies you want to install and customizations in the 
-"conf/mypkgs-pkgs.sh" and "conf/myenv-env.sh" files you created (based on the existing 
+You also put all the commands for dependencies you want to install and
+customizations in the "conf/mypkgs-pkgs.sh" and "conf/myenv-env.sh" files
+you created (based on the existing
 conf/default-pkgs.sh and conf/default-env.sh), respectively. 
 
-This install.sh script, in the top-level directory, will create the environment and
-install the dependencies and module files. When you run this script, it will
-download many MB of binary and source packages, extract files, and compile things.
-It will do this in your current working directory.
+This install.sh script, in the top-level directory, will create the environment
+and install the dependencies and module files. When you run this script, it
+will download many MB of binary and source packages, extract files, and compile things.  It will do this in your current working directory.
 Also the output will be very long, so pipe it to a log file::
 
     $> DCONDAVERSION=my-desiconda PREFIX=$HOME/software/desi CONF=myenv PKGS=mypkgs /path-to-git-clone/desiconda2/install.sh 2>&1 | tee log
