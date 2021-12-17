@@ -35,7 +35,8 @@ prepend-path LD_LIBRARY_PATH _AUXDIR_/lib
 setenv PROJ_LIB _CONDADIR_/share/proj
 
 # for performance on KNL; see https://github.com/desihub/desiutil/issues/180
-setenv SLURM_CPU_BIND cores
+# but don't set automatically; leave it for srun --cpu-bind=cores opt-in
+# setenv SLURM_CPU_BIND cores
 
 # in case PrgEnv-_CONDAPRGENV_ is not loaded, swap it in
 setenv CRAYPE_LINK_TYPE dynamic

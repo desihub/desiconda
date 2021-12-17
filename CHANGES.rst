@@ -2,10 +2,11 @@
 desiconda change Log
 ====================
 
-1.4.1 (unreleased)
+2.0.0 (unreleased)
 ------------------
 
-* No changes yet
+* Major refactor to remove boost and other compiled 3rd party dependencies
+  (PR #45)
 
 1.4.0 (2020-08-07)
 ------------------
