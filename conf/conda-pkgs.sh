@@ -2,7 +2,6 @@
 echo Current time $(date) Installing conda packages
 echo condadir is $CONDADIR
 
-conda config --append channels anaconda
 conda install --copy --yes -c conda-forge \
     astropy \
     speclite \
