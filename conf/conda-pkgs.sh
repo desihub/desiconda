@@ -19,8 +19,7 @@ conda install --copy --yes -c conda-forge \
     numpy \
     scipy \
     intel-openmp \
-    mkl \
-    mkl-service \
+    mkl=2020.0 \
     matplotlib \
     seaborn \
     pyyaml \

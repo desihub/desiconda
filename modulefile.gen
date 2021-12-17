@@ -37,11 +37,6 @@ setenv PROJ_LIB _CONDADIR_/share/proj
 # for performance on KNL; see https://github.com/desihub/desiutil/issues/180
 setenv SLURM_CPU_BIND cores
 
-# for reproducibility with MKL; see https://www.intel.com/content/www/us/en/develop/documentation/\
-# onemkl-developer-reference-c/top/support-functions/conditional-numerical-reproducibility-control\
-# /reproducibility-conditions.html
-setenv MKL_CBWR AVX2,STRICT
-
 # in case PrgEnv-_CONDAPRGENV_ is not loaded, swap it in
 setenv CRAYPE_LINK_TYPE dynamic
 if [ module-info mode load ] {
