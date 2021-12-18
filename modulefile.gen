@@ -1,0 +1,76 @@
+#%Module###<-magic cookie ####################################################
+##
+##   Software dependencies for the DESI spectroscopic pipeline.
+##
+##
+# variables for Tcl script use only
+set     version  _DCONDAVERSION_
+
+module-whatis "Loads software dependencies for DESI spectro pipeline."
+
+proc ModulesHelp { } {
+  global version
+  puts stderr "\t\t DESI software dependencies - Version $version\n"
+  puts stderr "\t This loads a conda environment and other compiled"
+  puts stderr "\t software needed by the spectro pipeline."
+  puts stderr ""
+}
+
+conflict desiconda
+
+# This is set by OS python and gives us problems.
+unsetenv PYTHONSTARTUP
+
+# This is the conda environment location
+prepend-path PATH _CONDADIR_/bin
+prepend-path PATH _AUXDIR_/bin
+setenv PYTHONPATH _CONDADIR_/lib/python_PYVERSION_/site-packages
+setenv DESICONDA _CONDADIR_
+setenv DESICONDA_VERSION _DCONDAVERSION_
+
+# Add location of conda environment shared objects to search path
+prepend-path LD_LIBRARY_PATH _AUXDIR_/lib
+
+# for basemap; see https://github.com/matplotlib/basemap/issues/419
+setenv PROJ_LIB _CONDADIR_/share/proj
+
+# for performance on KNL; see https://github.com/desihub/desiutil/issues/180
+# but don't set automatically; leave it for srun --cpu-bind=cores opt-in
+# setenv SLURM_CPU_BIND cores
+
+# in case PrgEnv-_CONDAPRGENV_ is not loaded, swap it in
+setenv CRAYPE_LINK_TYPE dynamic
+if [ module-info mode load ] {
+  if [ is-loaded PrgEnv-_CONDAPRGENV_ ] {
+  } else {
+    if [ is-loaded PrgEnv-cray ] {
+      module swap PrgEnv-cray  PrgEnv-_CONDAPRGENV_
+    }
+    if [ is-loaded PrgEnv-intel ] {
+      module swap PrgEnv-intel PrgEnv-_CONDAPRGENV_
+    }
+    if [ is-loaded PrgEnv-gnu ] {
+      module swap PrgEnv-gnu   PrgEnv-_CONDAPRGENV_
+    }
+  }
+  module unload darshan            # not necessary and suspected to generate overhead
+  module unload altd               # not necessary and suspected to cause random job hangs
+  module unload craype-hugepages2M # https://docs.nersc.gov/development/languages/python/faq-troubleshooting
+}
+
+# libraries that may need to be pre loaded 
+set preldlibs(0) _CONDADIR_/lib/libmkl_core.so
+set preldlibs(1) _CONDADIR_/lib/libmkl_intel_thread.so
+set preldlibs(2) _CONDADIR_/lib/libmkl_intel_lp64.so
+set preldlibs(3) _CONDADIR_/lib/libiomp5.so
+
+# load libraries
+foreach {n preldlib} [array get preldlibs] {
+  if [file exists $preldlib] {
+    if { [info exists ::env(LD_PRELOAD)] } {
+      setenv LD_PRELOAD $preldlib:$env(LD_PRELOAD)
+    } else {
+      setenv LD_PRELOAD $preldlib
+    }
+  }
+}
