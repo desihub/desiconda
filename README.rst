@@ -26,6 +26,10 @@ To install desiconda and load module::
     PREFIX=$prefix ./install.sh |& tee install.log
     module use $prefix/$DCONDAVERSION/modulefiles
     module load desiconda
+
+Then install a suite of desispec, desiutil, etc. modules::
+
+    source scripts/bootstrap-desi.sh
     
 Example
 ----------------
