@@ -2,8 +2,15 @@
 desiconda change Log
 ====================
 
-2.0.0 (unreleased)
+2.0.1 (unreleased)
 ------------------
+
+* No changes yet.
+
+2.0.0 (2022-01-10)
+------------------
+
+In use at NERSC since 2021-12-17 though the tag didn't happen until 2022-01-10.
 
 * Major refactor to remove boost and other compiled 3rd party dependencies
   (PR #45)
