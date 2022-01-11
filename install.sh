@@ -10,7 +10,7 @@ echo Starting desiconda installation at $(date)
 SECONDS=0
 
 # Defaults
-if [ -z $CONF ] ; then CONF=default; fi
+if [ -z $CONF ] ; then CONF=nersc;   fi
 if [ -z $PKGS ] ; then PKGS=default; fi
 
 # Script directory
@@ -33,9 +33,6 @@ export PATH=$CONDADIR/bin:$PATH
 
 # Initialize environment
 source $CONFIGUREENV
-
-# Swap modules
-source $SWAPPRGENV
 
 # Set installation directories
 DESICONDA=$PREFIX/$DCONDAVERSION
