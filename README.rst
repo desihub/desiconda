@@ -47,7 +47,7 @@ You git-cloned desiconda using::
 You also put all the commands for dependencies you want to install and
 customizations in the "conf/mypkgs-pkgs.sh" and "conf/myenv-env.sh" files
 you created (based on the existing
-conf/default-pkgs.sh and conf/default-env.sh), respectively. 
+conf/default-pkgs.sh and conf/nersc-env.sh), respectively.
 
 This install.sh script, in the top-level directory, will create the environment
 and install the dependencies and module files. When you run this script, it
