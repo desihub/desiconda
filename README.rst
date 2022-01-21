@@ -22,7 +22,7 @@ To install desiconda and load module::
     cd $local_copy
 
     unset PYTHONPATH
-    export DCONDAVERSION=$(date '+%Y%m%d')-2.0.1
+    export DCONDAVERSION=$(date '+%Y%m%d')-2.0.1dev
     PREFIX=$prefix ./install.sh |& tee install.log
     module use $prefix/$DCONDAVERSION/modulefiles
     module load desiconda
