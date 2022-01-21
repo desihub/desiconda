@@ -2,10 +2,15 @@
 desiconda change Log
 ====================
 
-2.0.1 (unreleased)
+2.0.2 (unreleased)
 ------------------
 
 * No changes yet.
+
+2.0.1 (2022-01-19)
+------------------
+
+* Installs successfully on Perlmutter with the same commands as on Cori (PR #47)
 
 2.0.0 (2022-01-10)
 ------------------
