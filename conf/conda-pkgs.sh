@@ -43,7 +43,7 @@ conda install --copy --yes -c conda-forge \
     certipy \
     sphinx \
     iminuit \
-    cudatoolkit \
+    cudatoolkit=11.5 \
     cupy \
     healpy \
     photutils \
