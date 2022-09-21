@@ -21,9 +21,6 @@ popd > /dev/null
 scriptname=$(basename $0)
 fullscript="${topdir}/${scriptname}"
 
-# Convenience environment variables
-SWAPPRGENV=$topdir/scripts/SwapPrgEnv.sh
-
 CONFDIR=$topdir/conf
 
 CONFIGUREENV=$CONFDIR/$CONF-env.sh
@@ -44,7 +41,7 @@ MODULEDIR=$DESICONDA/modulefiles/desiconda
 echo Installing conda root environment at $(date)
 
 mkdir -p $AUXDIR/bin
-mkdir -p $AUXDIR/lib 
+mkdir -p $AUXDIR/lib
 
 mkdir -p $CONDADIR/bin
 mkdir -p $CONDADIR/lib
