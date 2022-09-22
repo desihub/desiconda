@@ -4,7 +4,6 @@ echo condadir is $CONDADIR
 
 conda install --copy --yes -c conda-forge \
     astropy \
-    speclite \
     fitsio \
     fitsverify \
     libblas=*=*mkl \
