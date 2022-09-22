@@ -11,7 +11,8 @@ dependencies needed by the spectroscopic pipeline.
 Quick start installation
 ------------------------
 
-To install desiconda and load module::
+To install desiconda, start with a terminal where you have *not*
+configured a different desiconda / desi_environment, then::
 
     # set target
     prefix=/global/common/software/desi/users/${USER}/desiconda
