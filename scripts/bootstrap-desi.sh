@@ -21,9 +21,9 @@ for pkg in $pkgs; do
     # install branches/master and filter bogus error messages
     echo desiInstalling $pkg
     branch=branches/main
-    if [ $pkg == "QuasarNP" ] ; then branch="0.1.3"; fi
+    if [ $pkg == "QuasarNP" ] ; then branch="0.1.5"; fi
     if [ $pkg == "desitree" ] ; then branch="0.6.0"; fi
-    if [ $pkg ==   "specex" ] ; then branch="0.8.3"; fi
+    if [ $pkg ==   "specex" ] ; then branch="0.8.4"; fi
     desiInstall -v -r $base $pkg $branch
 done
 
