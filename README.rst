@@ -25,12 +25,17 @@ configured a different desiconda / desi_environment, then::
     unset PYTHONPATH
     export DCONDAVERSION=$(date '+%Y%m%d')-2.0.1.dev
     PREFIX=${prefix} ./install.sh |& tee install.log
+
+To load this version of desiconda::
+
     module use ${prefix}/${DCONDAVERSION}/modulefiles
     module load desiconda
 
 Then install a suite of desispec, desiutil, etc. modules::
 
     source scripts/bootstrap-desi.sh
+
+After that you can ``module load desiutil`` etc.
 
 Example
 -------
