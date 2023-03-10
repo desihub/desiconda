@@ -52,6 +52,7 @@ conda install --copy --yes -c conda-forge \
     cupy \
     line_profiler \
     galsim \
+    mkdocs \
     altair \
     vega_datasets \
 && mplrc="$CONDADIR/lib/python$PYVERSION/site-packages/matplotlib/mpl-data/matplotlibrc"; \
