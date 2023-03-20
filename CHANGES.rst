@@ -2,6 +2,13 @@
 desiconda Change Log
 ====================
 
+2.1.1 (unreleased)
+------------------
+
+* Add mkdocs to default packages (PR `#62`_).
+
+.. _`#62`: https://github.com/desihub/desiconda/pull/62
+
 2.1.0 (2022-09-28)
 ------------------
 
