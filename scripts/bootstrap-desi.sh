@@ -13,7 +13,7 @@ pip install git+https://github.com/desihub/desiutil.git
 if [[ "${NERSC_HOST}" == "datatran" ]]; then
     pkgs="desiutil desitree desiBackup desidatamodel desitransfer desida"
 else
-    pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite specex QuasarNP"
+    pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite specex QuasarNP desisim-testdata desisurveyops"
 fi
 export DESI_SPX_MKL=true
 base=$(realpath $DESICONDA/..)
