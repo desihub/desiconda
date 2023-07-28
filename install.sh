@@ -56,7 +56,8 @@ echo Using Python version $PYVERSION
 
 # Prior to installing packages, switch to the fast libmamba package solver.
 echo Installing the libmamba package solver
-conda install -n base conda-libmamba-solver
+conda config --set solver classic
+conda install -n base conda-libmamba-solver -y
 conda config --set solver libmamba
 
 # Install packages
