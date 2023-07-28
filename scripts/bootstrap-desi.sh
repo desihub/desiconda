@@ -13,7 +13,7 @@ pip install git+https://github.com/desihub/desiutil.git
 if [[ "${NERSC_HOST}" == "datatran" ]]; then
     pkgs="desiutil desitree desiBackup desidatamodel desitransfer desida"
 else
-    if [[ "${HOSTNAME}" == "desi-7" ]]; then
+    if [ "${HOSTNAME}" == "desi-7" ] || [ "${HOSTNAME}" == "desi-8" ]; then
         pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite nightwatch"
     else
         pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite specex QuasarNP desisim-testdata desisurveyops"
