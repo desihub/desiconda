@@ -46,6 +46,7 @@ conda install --copy --yes -c conda-forge \
     cupy \
     healpy \
     photutils \
+    specutils \
     xlrd \
     coveralls \
     configobj \
