@@ -54,6 +54,12 @@ source $CONDADIR/bin/activate
 export PYVERSION=$(python -c "import sys; print(str(sys.version_info[0])+'.'+str(sys.version_info[1]))")
 echo Using Python version $PYVERSION
 
+# Prior to installing packages, switch to the fast libmamba package solver.
+echo Installing the libmamba package solver
+conda config --set solver classic
+conda install -n base conda-libmamba-solver -y
+conda config --set solver libmamba
+
 # Install packages
 source $INSTALLPKGS
 
