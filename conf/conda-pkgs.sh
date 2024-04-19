@@ -15,7 +15,7 @@ conda install --copy --yes -c conda-forge \
     future \
     cython \
     cmake \
-    numpy \
+    "numpy<2.0" \
     scipy \
     intel-openmp \
     mkl=2020.0 \
@@ -37,12 +37,11 @@ conda install --copy --yes -c conda-forge \
     ipython \
     jupyter \
     ipywidgets \
-    bokeh \
+    "bokeh<3" \
     wurlitzer \
     certipy \
     sphinx \
     iminuit \
-    cudatoolkit=11.5 \
     cupy \
     healpy \
     photutils \
@@ -50,7 +49,6 @@ conda install --copy --yes -c conda-forge \
     xlrd \
     coveralls \
     configobj \
-    cupy \
     line_profiler \
     galsim \
     mkdocs \

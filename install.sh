@@ -9,6 +9,9 @@ done
 echo Starting desiconda installation at $(date)
 SECONDS=0
 
+# Print every command run as part of log
+set -o xtrace
+
 # Defaults
 if [ -z $CONF ] ; then CONF=nersc;   fi
 if [ -z $PKGS ] ; then PKGS=default; fi
@@ -26,8 +29,6 @@ CONFDIR=$topdir/conf
 CONFIGUREENV=$CONFDIR/$CONF-env.sh
 INSTALLPKGS=$CONFDIR/$PKGS-pkgs.sh
 
-export PATH=$CONDADIR/bin:$PATH
-
 # Initialize environment
 source $CONFIGUREENV
 
@@ -36,6 +37,8 @@ DESICONDA=$PREFIX/$DCONDAVERSION
 CONDADIR=$DESICONDA/conda
 AUXDIR=$DESICONDA/aux
 MODULEDIR=$DESICONDA/modulefiles/desiconda
+
+export PATH=$CONDADIR/bin:$PATH
 
 # Install conda root environment
 echo Installing conda root environment at $(date)
@@ -54,11 +57,16 @@ source $CONDADIR/bin/activate
 export PYVERSION=$(python -c "import sys; print(str(sys.version_info[0])+'.'+str(sys.version_info[1]))")
 echo Using Python version $PYVERSION
 
-# Prior to installing packages, switch to the fast libmamba package solver.
-echo Installing the libmamba package solver
-conda config --set solver classic
-conda install -n base conda-libmamba-solver -y
-conda config --set solver libmamba
+## Update to latest conda
+# conda update -n base -c conda-forge conda
+
+## Prior to installing packages, switch to the fast libmamba package solver.
+## Disabled because miniconda how includes the mamba solver by default
+#
+# echo Installing the libmamba package solver
+# conda config --set solver classic
+# conda install -n base conda-libmamba-solver -y
+# conda config --set solver libmamba
 
 # Install packages
 source $INSTALLPKGS
@@ -72,7 +80,7 @@ python$PYVERSION -m compileall -f "$CONDADIR/lib/python$PYVERSION/site-packages"
 echo Setting permissions at $(date)
 
 chgrp -R $GRP $CONDADIR
-chmod -R u=rwX,g=rX,o-rwx $CONDADIR
+chmod -R u=rwX,g=rX,o=rX $CONDADIR
 
 # Install modulefile
 echo Installing the desiconda modulefile at $(date)
@@ -91,7 +99,7 @@ cp desiconda.module $MODULEDIR/$DCONDAVERSION
 cp desiconda.modversion $MODULEDIR/.version_$DCONDAVERSION
 
 chgrp -R $GRP $MODULEDIR
-chmod -R u=rwX,g=rX,o-rwx $MODULEDIR
+chmod -R u=rwX,g=rX,o=rx $MODULEDIR
 
 # All done
 echo Done at $(date)
