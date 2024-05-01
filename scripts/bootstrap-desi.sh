@@ -32,10 +32,30 @@ for pkg in $pkgs; do
     # some packages we special-case to tagged versions
     if [ $pkg == "QuasarNP" ] ; then branch="0.1.5"; fi
     if [ $pkg == "desitree" ] ; then branch="0.6.0"; fi
-    if [ $pkg ==   "specex" ] ; then branch="0.8.6"; fi
+    ### if [ $pkg ==   "specex" ] ; then branch="0.8.6"; fi
 
     desiInstall -v -r $base $pkg $branch
+
+    # special case to compile specex and fiberassign main
+    if [ $pkg == "specex" ] ; then
+        module load specex/main
+        pushd $SPECEX
+        python setup.py build_ext --inplace
+        popd
+    fi
+
+    if [ $pkg == "fiberassign" ] ; then
+        module load fiberassign/main
+        pushd $FIBERASSIGN
+        python setup.py build_ext --inplace
+        popd
+    fi
 done
+
+# install dust module from an earlier version of desiconda
+pushd $PREFIX
+cp -r 20230111-2.1.0/modulefiles/dust $DCONDAVERSION/modulefiles/
+popd
 
 # remove pip desiutil because we'll use the desiutil module now
 pip uninstall desiutil --yes
