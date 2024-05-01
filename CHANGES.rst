@@ -2,12 +2,21 @@
 desiconda Change Log
 ====================
 
-2.1.1 (unreleased)
+2.2.1 (unreleased)
+------------------
+
+* No changes yet.
+
+2.2.0 (2024-05-01)
 ------------------
 
 * Add mkdocs to default packages (PR `#62`_).
+* Add specutils to default packages (PR `#65`_).
+* Update packages for Jura run (PR `#68`_).
 
 .. _`#62`: https://github.com/desihub/desiconda/pull/62
+.. _`#65`: https://github.com/desihub/desiconda/pull/65
+.. _`#68`: https://github.com/desihub/desiconda/pull/68
 
 2.1.0 (2022-09-28)
 ------------------
