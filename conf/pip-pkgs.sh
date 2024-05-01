@@ -1,7 +1,10 @@
 # Install pip packages.
 echo Installing pip packages at $(date)
 
-pip install --no-binary :all: hpsspy
+#- SB 2024-03-22: previous hpsspy install method fails, but basic install works
+# pip install --no-binary :all: hpsspy
+pip install hpsspy
+
 pip install threadpoolctl
 
 # see https://docs.nersc.gov/development/languages/python/parallel-python/
@@ -12,4 +15,4 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
-echo Current time $(date) Done installing conda packages
+echo Current time $(date) Done installing pip packages

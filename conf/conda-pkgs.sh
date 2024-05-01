@@ -2,12 +2,24 @@
 echo Current time $(date) Installing conda packages
 echo condadir is $CONDADIR
 
+# Notes:
+# - cupy-core instead of cupy so that it won't install any cuda libraries,
+#   which we will get from NERSC cudatoolkit module instead
+# - mkl=2020.0 because that is the last version that guarantees bitwise
+#   identical output for bitwise idential input
+# - bokeh<3 because prospect and nightwatch don't yet support bokeh 3
+# - numpy<2.0 because we haven't tested with numpy 2.x yet.
+# - ucx constraint is to avoid bringing in cuda libraries due to mal-formed
+#   dependencies "dask -> pyarrow -> libarrow -> ucx"
+#   https://github.com/conda-forge/ucx-split-feedstock/issues/172
+
 conda install --copy --yes -c conda-forge \
     astropy \
     fitsio \
     fitsverify \
     libblas=*=*mkl \
     dask \
+    "ucx=1.14.1=*_0" \
     distributed \
     papermill \
     nose \
@@ -15,7 +27,7 @@ conda install --copy --yes -c conda-forge \
     future \
     cython \
     cmake \
-    numpy \
+    "numpy<2.0" \
     scipy \
     intel-openmp \
     mkl=2020.0 \
@@ -37,25 +49,24 @@ conda install --copy --yes -c conda-forge \
     ipython \
     jupyter \
     ipywidgets \
-    bokeh \
+    "bokeh<3" \
     wurlitzer \
     certipy \
     sphinx \
     iminuit \
-    cudatoolkit=11.5 \
-    cupy \
+    cupy-core \
     healpy \
     photutils \
     specutils \
     xlrd \
     coveralls \
     configobj \
-    cupy \
     line_profiler \
     galsim \
     mkdocs \
     altair \
     vega_datasets \
+    conda-tree \
 && mplrc="$CONDADIR/lib/python$PYVERSION/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
