@@ -99,7 +99,7 @@ cp desiconda.module $MODULEDIR/$DCONDAVERSION
 cp desiconda.modversion $MODULEDIR/.version_$DCONDAVERSION
 
 chgrp -R $GRP $MODULEDIR
-chmod -R u=rwX,g=rX,o=rx $MODULEDIR
+chmod -R u=rwX,g=rX,o=rX $MODULEDIR
 
 # All done
 echo Done at $(date)
