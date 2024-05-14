@@ -5,7 +5,7 @@ desiconda Change Log
 2.2.1 (unreleased)
 ------------------
 
-* No changes yet.
+* Added gfa_reduce to scripts/bootstrap_desi.sh (direct commit to main)
 
 2.2.0 (2024-05-01)
 ------------------
