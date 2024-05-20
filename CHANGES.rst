@@ -5,7 +5,10 @@ desiconda Change Log
 2.2.1 (unreleased)
 ------------------
 
-* Added gfa_reduce to scripts/bootstrap_desi.sh (direct commit to main)
+* Added ``gfa_reduce`` to ``scripts/bootstrap-desi.sh`` (direct commit to main).
+* Added ``desiBackup``, ``desida`` and ``desidatamodel`` to ``scripts/bootstrap-desi.sh`` (PR `#70`_).
+
+.. _`#70`: https://github.com/desihub/desiconda/pull/70
 
 2.2.0 (2024-05-01)
 ------------------
