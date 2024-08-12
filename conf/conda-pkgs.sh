@@ -64,6 +64,8 @@ conda install --copy --yes -c conda-forge \
     line_profiler \
     galsim \
     mkdocs \
+    mkdocs-material \
+    pymdown-extensions \
     altair \
     vega_datasets \
     conda-tree \
