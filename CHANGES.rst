@@ -7,8 +7,11 @@ desiconda Change Log
 
 * Added ``gfa_reduce`` to ``scripts/bootstrap-desi.sh`` (direct commit to main).
 * Added ``desiBackup``, ``desida`` and ``desidatamodel`` to ``scripts/bootstrap-desi.sh`` (PR `#70`_).
+* Added ``mkdocs-material`` and ``pymdown-extensions`` to ``conf/conda-pkgs.sh`` (PR `#73`_).
 
 .. _`#70`: https://github.com/desihub/desiconda/pull/70
+.. _`#73`: https://github.com/desihub/desiconda/pull/73
+
 
 2.2.0 (2024-05-01)
 ------------------
