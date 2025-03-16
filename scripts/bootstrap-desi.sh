@@ -89,6 +89,21 @@ while IFS= read -r line; do
     if [[ -n "$name" ]] && [[ -n "$url" ]] && [[ -n "$version" ]]; then
         echo "Installing package ${name}: version ${version}"
         echo "$(desiInstall -v -p $name:$url -r $base $name $version)"
+
+        # Special case to compile specex/main and fiberassign/main
+        if [[ "$name" == "specex" ]] && [[ "$version" == "main" ]]; then
+            module load specex/main
+            pushd $SPECEX
+            python setup.py build_ext --inplace
+            popd
+        fi
+
+        if [[ "$name" == "fiberassign" ]] && [[ "$version" == "main" ]]; then
+            module load fiberassign/main
+            pushd $FIBERASSIGN
+            python setup.py build_ext --inplace
+            popd
+        fi
     fi
 done < "$configfile"
 
