@@ -17,70 +17,90 @@ if [[ "$HOSTNAME" == "desi-7" ]] || [[ "$HOSTNAME" == "desi-8" ]]; then
     fi
 fi
 
+usage() { echo "Usage: $0 [-h] [-c filename.ini] [-v]" 1>&2; exit 1; }
+
+while getopts "h:v:c:" opt; do
+    case ${opt} in
+        v)
+           set -x # print commands as they are run
+           ;;
+        c)
+           configfile=${OPTARG}
+           ;;
+        h | *)
+           usage
+           ;;
+    esac
+done
+shift $((OPTIND-1))
+
+if [[ -z "$configfile" ]]; then
+  usage
+fi
+
 # Install desiutil to get desiInstall script
 # (will remove this later after installing the desiutil module)
 # Note that special instructions are needed at KPNO (desi-8).
 if [ $iskpno == true ]; then
     ssh git@desi-general git -C desiutil fetch
-    git clone git@desi-general:desiutil
-    pip install -e desiutil
+    git clone git@desi-general:desiutil desiutil-installer
+    export PATH=desiutil-installer/bin:$PATH
+    export PYTHONPATH=desiutil-installer/py:$PYTHONPATH
 else
      pip install git+https://github.com/desihub/desiutil.git
 fi
 
-if [[ "${NERSC_HOST}" == "datatran" ]]; then
-    # NERSC Data Transfer Nodes have minimal environment
-    pkgs="desiutil desitree desiBackup desidatamodel desitransfer desida"
-elif [ $iskpno == true ]; then
-    # KPNO have most packages, but not specex QuasarNP, ...
-    pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite nightwatch"
-else
-    # Default is everything
-    pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite specex QuasarNP desisim-testdata desisurveyops specprod-db fastspecfit gfa_reduce desiBackup desida desidatamodel"
-fi
-
+# Set up the environment and loop through packages specified in the config
+# file, installing one-by-one
 export DESI_SPX_MKL=true
-base=$(realpath $DESICONDA/..)
-for pkg in $pkgs; do
-    # install branches/main
-    echo desiInstalling $pkg
-    branch=branches/main
+base=$(realpath ${DESICONDA}/..)
 
-    # some packages we special-case to tagged versions
-    if [ $pkg == "QuasarNP" ] ; then branch="0.1.5"; fi
-    if [ $pkg == "desitree" ] ; then branch="0.6.0"; fi
-    ### if [ $pkg ==   "specex" ] ; then branch="0.8.6"; fi
+while IFS= read -r line; do
+    # Remove leading/trailing whitespace
+    line=$(echo -e "$line" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
-    # Special instructions at KPNO
-    if [ $iskpno == true ]; then
-        echo desiInstall -v -p $pkg:git@desi-general:$pkg -r $base $pkg $branch
-        desiInstall -v -p $pkg:git@desi-general:$pkg -r $base $pkg $branch
-    else
-        desiInstall -v -r $base $pkg $branch
+    # Skip empty lines and comments
+    if [[ -z "$line" || "$line" == "#"* ]]; then
+        continue
     fi
 
-    # special case to compile specex and fiberassign main
-    if [ $pkg == "specex" ] ; then
-        module load specex/main
-        pushd $SPECEX
-        python setup.py build_ext --inplace
-        popd
+    # Check for section headers; reset package name + version
+    if [[ "$line" == "[package]"* ]]; then
+        name=""
+        version=""
+        continue
     fi
 
-    if [ $pkg == "fiberassign" ] ; then
-        module load fiberassign/main
-        pushd $FIBERASSIGN
-        python setup.py build_ext --inplace
-        popd
+    # Extract package name, url, and version
+    if [[ "$line" == "name"*"="* ]]; then
+        name=$(echo "$line" | cut -d'=' -f2 | awk '{$1=$1};1')
     fi
-done
 
-# install dust module from an earlier version of desiconda
-if [ $iskpno == false ]; then
+    if [[ "$line" == "url"*"="* ]]; then
+        url=$(echo "$line" | cut -d'=' -f2 | awk '{$1=$1};1')
+        echo $url
+    fi
+
+    if [[ "$line" == "version"*"="* ]]; then
+        version=$(echo "$line" | cut -d'=' -f2 | awk '{$1=$1};1')
+    fi
+
+    # Install a package name + version
+    if [[ -n "$name" ]] && [[ -n "$url" ]] && [[ -n "$version" ]]; then
+        echo "Installing package ${name}: version ${version}"
+        echo "$(desiInstall -v -p $name:$url -r $base $name $version)"
+    fi
+done < "$configfile"
+
+# Clean up
+if [ $iskpno == true ]; then
+    rm -rf desiutil-installer
+else
+    # install dust module from an earlier version of desiconda
     pushd $PREFIX
     cp -r 20230111-2.1.0/modulefiles/dust $DCONDAVERSION/modulefiles/
     popd
-fi
 
-# remove pip desiutil because we'll use the desiutil module now
-pip uninstall desiutil --yes
+    # remove pip desiutil because we'll use the desiutil module now
+    pip uninstall desiutil --yes
+fi
