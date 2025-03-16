@@ -14,7 +14,7 @@ echo condadir is $CONDADIR
 #   https://github.com/conda-forge/ucx-split-feedstock/issues/172
 
 conda install --copy --yes -c conda-forge \
-    astropy \
+    "astropy<7.0" \
     fitsio \
     fitsverify \
     libblas=*=*mkl \
