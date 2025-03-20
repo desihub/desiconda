@@ -44,6 +44,13 @@ fi
 if [ $iskpno == true ]; then
     ssh git@desi-general git -C desiutil fetch
     git clone git@desi-general:desiutil desiutil-installer
+
+    #- Temporary: use the kpno-projects-update branch
+    pushd  desiutil-installer
+    git checkout kpno-projects-update
+    echo "WARNING: using the desiutil kpno-projects-update branch."
+    popd
+
     export PATH=desiutil-installer/bin:$PATH
     export PYTHONPATH=desiutil-installer/py:$PYTHONPATH
 else
