@@ -55,7 +55,7 @@ fi
 export DESI_SPX_MKL=true
 base=$(realpath ${DESICONDA}/..)
 
-while IFS= read -r line; do
+while IFS= read line <&3; do
     # Remove leading/trailing whitespace
     line=$(echo -e "$line" | sed -e 's/^[[:space:]]*//' -e 's/[[:space:]]*$//')
 
@@ -88,7 +88,8 @@ while IFS= read -r line; do
     # Install a package name + version
     if [[ -n "$name" ]] && [[ -n "$url" ]] && [[ -n "$version" ]]; then
         echo "Installing package ${name}: version ${version}"
-        echo "$(desiInstall -v -p $name:$url -r $base $name $version)"
+        echo "desiInstall -v -p $name:$url -r $base $name $version"
+        desiInstall -v -p $name:$url -r $base $name $version
 
         # Special case to compile specex/main and fiberassign/main
         if [[ "$name" == "specex" ]] && [[ "$version" == "main" ]]; then
@@ -104,8 +105,11 @@ while IFS= read -r line; do
             python setup.py build_ext --inplace
             popd
         fi
+
+        echo "Done setting up $name"
+        echo ""
     fi
-done < "$configfile"
+done 3< "$configfile"
 
 # Clean up
 if [ $iskpno == true ]; then
