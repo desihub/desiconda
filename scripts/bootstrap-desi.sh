@@ -43,16 +43,21 @@ fi
 # Note that special instructions are needed at KPNO (desi-8).
 if [ $iskpno == true ]; then
     ssh git@desi-general git -C desiutil fetch
-    git clone git@desi-general:desiutil desiutil-installer
+#    git clone git@desi-general:desiutil desiutil-installer
 
-    #- Temporary: use the kpno-projects-update branch
-    pushd  desiutil-installer
-    git checkout kpno-projects-update
-    echo "WARNING: using the desiutil kpno-projects-update branch."
-    popd
+    #- Temporary: use kpno-projects-update branch
+    git clone git@desi-general:desiutil -c advice.detachedHead=false --branch=kpno-projects-update desiutil-installer
 
-    export PATH=desiutil-installer/bin:$PATH
-    export PYTHONPATH=desiutil-installer/py:$PYTHONPATH
+#    #- For old installations (godesi 23.10) use desiutil 3.4.1
+#    git clone git@desi-general:desiutil -c advice.detachedHead=false --branch=3.4.1 desiutil-installer
+#    pushd  desiutil-installer
+#    git apply ../desiutil-3.4.1.patch
+#    popd
+
+    echo "export PATH=`pwd`/desiutil-installer/bin:\$PATH" > env.txt
+    echo "export PYTHONPATH=`pwd`/desiutil-installer/py:\$PYTHONPATH" >> env.txt
+    source env.txt
+    rm env.txt
 else
      pip install git+https://github.com/desihub/desiutil.git
 fi
