@@ -21,6 +21,7 @@ conda install --copy --yes -c conda-forge \
     dask \
     "ucx=1.14.1=*_0" \
     distributed \
+    setuptools-scm \
     papermill \
     nose \
     requests \
