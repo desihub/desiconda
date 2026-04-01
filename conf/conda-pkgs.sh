@@ -20,6 +20,7 @@ echo condadir is $CONDADIR
 #   - Added numba-cuda in addition to numba (future-proofing)
 #   - Added pytest-xdist for pytest parallelism
 #   - Added setuptools-scm to support desiInstall speclite and specsim (desiutil #227)
+#   - Added ipympl for interactive plotting in jupyter
 
 conda install --copy --yes -c conda-forge \
     astropy \
@@ -41,6 +42,7 @@ conda install --copy --yes -c conda-forge \
     scipy \
     intel-openmp \
     matplotlib \
+    ipympl \
     seaborn \
     pyyaml \
     pytest-astropy \
