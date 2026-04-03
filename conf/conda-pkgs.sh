@@ -66,6 +66,7 @@ conda install --copy --yes -c conda-forge \
     wurlitzer \
     certipy \
     sphinx \
+    sphinx_rtd_theme \
     iminuit \
     cupy-core \
     healpy \
