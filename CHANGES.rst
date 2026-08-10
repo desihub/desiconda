@@ -9,9 +9,9 @@ Used for Matterhorn. Some updates (bokeh, sphinx_rtd_theme, setuptools-scm) were
 post-installation then added to ``conf/conda-pkgs.sh``.  This tag tries to reflect what
 was actually used for Matterhorn.
 
-* Added ``gfa_reduce`` to ``scripts/bootstrap-desi.sh`` (direct commit to main).
-* Added ``desiBackup``, ``desida`` and ``desidatamodel`` to ``scripts/bootstrap-desi.sh`` (PR `#70`_).
-* Added ``mkdocs-material`` and ``pymdown-extensions`` to ``conf/conda-pkgs.sh`` (PR `#73`_).
+* Add ``gfa_reduce`` to ``scripts/bootstrap-desi.sh`` (direct commit to main).
+* Add ``desiBackup``, ``desida`` and ``desidatamodel`` to ``scripts/bootstrap-desi.sh`` (PR `#70`_).
+* Add ``mkdocs-material`` and ``pymdown-extensions`` to ``conf/conda-pkgs.sh`` (PR `#73`_).
 * Add setuptools-scm (PR `#81`_).
 * Multiple updates for Matterhorn, including blas, numpy, and dropping mkl (PR `#83`_).
 * Unpin bokeh version to match Matterhorn post-facto update (PR `#84`_).
