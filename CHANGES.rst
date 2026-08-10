@@ -2,12 +2,18 @@
 desiconda Change Log
 ====================
 
-2.3.1 (unreleased)
+2.3.2 (unreleased)
 ------------------
 
-Used for Matterhorn. Some updates (bokeh, sphinx_rtd_theme, setuptools-scm) were made
-post-installation then added to ``conf/conda-pkgs.sh``.  This tag tries to reflect what
-was actually used for Matterhorn.
+* No changes yet.
+
+2.3.1 (2026-08-10)
+------------------
+
+Used for Matterhorn then post-facto tagged.
+Some updates (bokeh, sphinx_rtd_theme, setuptools-scm) were made
+post-installation then added to ``conf/conda-pkgs.sh``.
+This tag tries to reflect what was actually used for Matterhorn.
 
 * Add ``gfa_reduce`` to ``scripts/bootstrap-desi.sh`` (direct commit to main).
 * Add ``desiBackup``, ``desida`` and ``desidatamodel`` to ``scripts/bootstrap-desi.sh`` (PR `#70`_).
