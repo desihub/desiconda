@@ -2,15 +2,25 @@
 desiconda Change Log
 ====================
 
-2.2.1 (unreleased)
+2.3.1 (unreleased)
 ------------------
 
-* Added ``gfa_reduce`` to ``scripts/bootstrap-desi.sh`` (direct commit to main).
-* Added ``desiBackup``, ``desida`` and ``desidatamodel`` to ``scripts/bootstrap-desi.sh`` (PR `#70`_).
-* Added ``mkdocs-material`` and ``pymdown-extensions`` to ``conf/conda-pkgs.sh`` (PR `#73`_).
+Used for Matterhorn. Some updates (bokeh, sphinx_rtd_theme, setuptools-scm) were made
+post-installation then added to ``conf/conda-pkgs.sh``.  This tag tries to reflect what
+was actually used for Matterhorn.
+
+* Add ``gfa_reduce`` to ``scripts/bootstrap-desi.sh`` (direct commit to main).
+* Add ``desiBackup``, ``desida`` and ``desidatamodel`` to ``scripts/bootstrap-desi.sh`` (PR `#70`_).
+* Add ``mkdocs-material`` and ``pymdown-extensions`` to ``conf/conda-pkgs.sh`` (PR `#73`_).
+* Add setuptools-scm (PR `#81`_).
+* Multiple updates for Matterhorn, including blas, numpy, and dropping mkl (PR `#83`_).
+* Unpin bokeh version to match Matterhorn post-facto update (PR `#84`_).
 
 .. _`#70`: https://github.com/desihub/desiconda/pull/70
 .. _`#73`: https://github.com/desihub/desiconda/pull/73
+.. _`#81`: https://github.com/desihub/desiconda/pull/81
+.. _`#83`: https://github.com/desihub/desiconda/pull/83
+.. _`#84`: https://github.com/desihub/desiconda/pull/84
 
 
 2.2.0 (2024-05-01)
