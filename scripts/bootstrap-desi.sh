@@ -30,7 +30,7 @@ for pkg in $pkgs; do
     branch=branches/main
 
     # some packages we special-case to tagged versions
-    if [ $pkg == "QuasarNP" ] ; then branch="0.1.5"; fi
+    if [ $pkg == "QuasarNP" ] ; then branch="0.2.0"; fi
     if [ $pkg == "desitree" ] ; then branch="0.7.0"; fi
     ### if [ $pkg ==   "specex" ] ; then branch="0.8.6"; fi
 
