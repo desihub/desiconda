@@ -7,7 +7,8 @@ echo condadir is $CONDADIR
 #   which we will get from NERSC cudatoolkit module instead
 # - OLD: mkl=2020.0 because that is the last version that guarantees bitwise
 #   identical output for bitwise idential input
-# - bokeh<3 because nightwatch doesn't yet support bokeh 3
+# - desiconda 2.3.1 originally installed with bokeh<3, but updated by hand to bokeh/3.8.2
+#   due to numpy incompatibility (see https://github.com/desihub/desiconda/issues/82).
 # - ucx constraint is to avoid bringing in cuda libraries due to mal-formed
 #   dependencies "dask -> pyarrow -> libarrow -> ucx"
 #   https://github.com/conda-forge/ucx-split-feedstock/issues/172
@@ -63,7 +64,7 @@ conda install --copy --yes -c conda-forge \
     ipython \
     jupyter \
     ipywidgets \
-    "bokeh<3" \
+    bokeh \
     wurlitzer \
     certipy \
     sphinx \
