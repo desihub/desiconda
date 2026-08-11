@@ -3,17 +3,26 @@
 # Bootstrap installation of the main branch of a set of DESI modules
 
 if [ -z "$DESICONDA" ] || [ -z "$DESICONDA_VERSION" ]; then
-    echo "Load a desiconda module first to get \$DESICONDA and $DESICONDA_VERSION"
+    echo "Load a desiconda module first to get \$DESICONDA and $DESICONDA_VERSION" >&2
     return
 fi
 
 # Install desiutil to get desiInstall script
 # (will remove this later after installing the desiutil module)
-pip install git+https://github.com/desihub/desiutil.git
+pip install desiutil
 
 if [[ "${NERSC_HOST}" == "datatran" ]]; then
     # NERSC Data Transfer Nodes have minimal environment
     pkgs="desiutil desitree desiBackup desidatamodel desitransfer desida"
+    # MODULESHOME may be incorrectly set on datatran.
+    if [[ -z "${MODULESHOME}" || ! -d ${MODULESHOME} ]]; then
+        if [[ -d /usr/share/lmod/lmod ]]; then
+            export MODULESHOME=/usr/share/lmod/lmod
+        else
+            echo "Could not determine the MODULESHOME directory!" >&2
+            return
+        fi
+    fi
 elif [ "${HOSTNAME}" == "desi-7" ] || [ "${HOSTNAME}" == "desi-8" ]; then
     # KPNO have most packages, but not specex QuasarNP, ...
     pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite nightwatch"
@@ -34,6 +43,7 @@ for pkg in $pkgs; do
     if [ $pkg == "desitree" ] ; then branch="0.7.0"; fi
     ### if [ $pkg ==   "specex" ] ; then branch="0.8.6"; fi
 
+    echo desiInstall -v -r $base $pkg $branch
     desiInstall -v -r $base $pkg $branch
 
     # special case to compile specex and fiberassign main
@@ -51,11 +61,6 @@ for pkg in $pkgs; do
         popd
     fi
 done
-
-# install dust module from an earlier version of desiconda
-pushd $PREFIX
-cp -r 20230111-2.1.0/modulefiles/dust $DCONDAVERSION/modulefiles/
-popd
 
 # remove pip desiutil because we'll use the desiutil module now
 pip uninstall desiutil --yes
