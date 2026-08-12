@@ -2,8 +2,8 @@
 
 # Bootstrap installation of the main branch of a set of DESI modules
 
-if [ -z "$DESICONDA" ] || [ -z "$DESICONDA_VERSION" ]; then
-    echo "Load a desiconda module first to get \$DESICONDA and $DESICONDA_VERSION" >&2
+if [[ -z "$DESICONDA" || -z "$DESICONDA_VERSION" ]]; then
+    echo "ERROR: Load a desiconda module first to get \$DESICONDA and \$DESICONDA_VERSION" >&2
     return
 fi
 
@@ -19,11 +19,11 @@ if [[ "${NERSC_HOST}" == "datatran" ]]; then
         if [[ -d /usr/share/lmod/lmod ]]; then
             export MODULESHOME=/usr/share/lmod/lmod
         else
-            echo "Could not determine the MODULESHOME directory!" >&2
+            echo "ERROR: Could not determine the MODULESHOME directory!" >&2
             return
         fi
     fi
-elif [ "${HOSTNAME}" == "desi-7" ] || [ "${HOSTNAME}" == "desi-8" ]; then
+elif [[ "${HOSTNAME}" == "desi-7" || "${HOSTNAME}" == "desi-8" ]]; then
     # KPNO have most packages, but not specex QuasarNP, ...
     pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite nightwatch"
 else
@@ -35,26 +35,26 @@ export DESI_SPX_MKL=true
 base=$(realpath $DESICONDA/..)
 for pkg in $pkgs; do
     # install branches/main
-    echo desiInstalling $pkg
+    echo "INFO: desiInstalling $pkg"
     branch=branches/main
 
     # some packages we special-case to tagged versions
-    if [ $pkg == "QuasarNP" ] ; then branch="0.2.0"; fi
-    if [ $pkg == "desitree" ] ; then branch="0.7.0"; fi
-    ### if [ $pkg ==   "specex" ] ; then branch="0.8.6"; fi
+    if [[ $pkg == "QuasarNP" ]] ; then branch="0.2.0"; fi
+    if [[ $pkg == "desitree" ]] ; then branch="0.7.0"; fi
+    ### if [[ $pkg == "specex" ]] ; then branch="0.8.6"; fi
 
-    echo desiInstall -v -r $base $pkg $branch
+    echo "INFO: desiInstall -v -r $base $pkg $branch"
     desiInstall -v -r $base $pkg $branch
 
     # special case to compile specex and fiberassign main
-    if [ $pkg == "specex" ] ; then
+    if [[ $pkg == "specex" ]]; then
         module load specex/main
         pushd $SPECEX
         python setup.py build_ext --inplace
         popd
     fi
 
-    if [ $pkg == "fiberassign" ] ; then
+    if [[ $pkg == "fiberassign" ]]; then
         module load fiberassign/main
         pushd $FIBERASSIGN
         python setup.py build_ext --inplace
