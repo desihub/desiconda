@@ -5,7 +5,7 @@ desiconda Change Log
 2.3.2 (unreleased)
 ------------------
 
-* Remove unnecessary setting of ``PYTHONPATH`` which conflits with system
+* Remove unnecessary setting of ``PYTHONPATH`` which conflicts with system
   Python tools, e.g. ``podman-hpc`` issue `#87`_.
 * Add ``conf/fast-pkgs.sh`` (``PKGS=fast``), a minimal package set for
   quickly iterating on ``install.sh`` without the full dependency list.
