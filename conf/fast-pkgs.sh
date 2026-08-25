@@ -8,8 +8,7 @@ conda install --copy --yes -c conda-forge \
     numpy \
     astropy \
     pytest \
-&& rm -rf $CONDADIR/pkgs/*
-
+&& rm -rf -- "${CONDADIR:?}/pkgs/"*
 if [ $? != 0 ]; then
     echo "ERROR installing conda packages; exiting"
     exit 1
