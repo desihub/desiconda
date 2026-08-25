@@ -89,12 +89,12 @@ conda install --copy --yes -c conda-forge \
 && mplrc="$CONDADIR/lib/python$PYVERSION/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
-&& rm -rf $CONDADIR/pkgs/*
+&& rm -rf -- "${CONDADIR:?}/pkgs/"*
 
 if [ $? != 0 ]; then
     echo "ERROR installing conda packages; exiting"
     exit 1
 fi
 
-conda list --export | grep -v conda > "$CONDADIR/pkg_list.txt"
+conda list --export | grep -v '^conda=' > "$CONDADIR/pkg_list.txt"
 echo Current time $(date) Done installing conda packages
