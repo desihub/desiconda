@@ -24,7 +24,6 @@ unsetenv PYTHONSTARTUP
 # This is the conda environment location
 prepend-path PATH _CONDADIR_/bin
 prepend-path PATH _AUXDIR_/bin
-setenv PYTHONPATH _CONDADIR_/lib/python_PYVERSION_/site-packages
 setenv DESICONDA _CONDADIR_
 setenv CONDA_PREFIX _CONDADIR_
 setenv DESICONDA_VERSION _DCONDAVERSION_
