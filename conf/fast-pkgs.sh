@@ -14,5 +14,5 @@ if [ $? != 0 ]; then
     exit 1
 fi
 
-conda list --export | grep -v conda > "$CONDADIR/pkg_list.txt"
+conda list --export | grep -v '^conda=' > "$CONDADIR/pkg_list.txt"
 echo Current time $(date) Done installing fast/minimal test packages
