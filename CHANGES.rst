@@ -5,7 +5,12 @@ desiconda Change Log
 2.3.2 (unreleased)
 ------------------
 
-* No changes yet.
+* Remove unnecessary setting of ``PYTHONPATH`` which conflits with system
+  Python tools, e.g. ``podman-hpc`` issue `#87`_.
+* Add ``conf/fast-pkgs.sh`` (``PKGS=fast``), a minimal package set for
+  quickly iterating on ``install.sh`` without the full dependency list.
+
+.. _`#87`: https://github.com/desihub/desiconda/issues/87
 
 2.3.1 (2026-08-10)
 ------------------
