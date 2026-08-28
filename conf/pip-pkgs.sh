@@ -5,6 +5,9 @@ echo Installing pip packages at $(date)
 # pip install --no-binary :all: hpsspy
 pip install hpsspy
 
+# See https://developer.nvidia.com/blog/cuda-python-1-0-stable-apis-one-foundation-full-platform-access/
+pip install cuda-python cuda-cccl numba numba-cuda-mlir[cu13] cupy-cuda13X
+
 pip install threadpoolctl
 
 # see https://docs.nersc.gov/development/languages/python/parallel-python/
