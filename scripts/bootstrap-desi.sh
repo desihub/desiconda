@@ -28,7 +28,7 @@ elif [[ "${HOSTNAME}" == "desi-7" || "${HOSTNAME}" == "desi-8" ]]; then
     pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite nightwatch"
 else
     # Default is everything
-    pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite specex QuasarNP desisim-testdata desisurveyops specprod-db fastspecfit gfa_reduce desiBackup desida desidatamodel"
+    pkgs="desiutil desitree desispec specter gpu_specter desimodel desitarget specsim desisim fiberassign desisurvey surveysim redrock redrock-templates prospect desimeter simqso speclite specex QuasarNP desisim-testdata desisurveyops specprod-db fastspecfit gfa_reduce desiBackup desida desidatamodel LSS"
 fi
 
 export DESI_SPX_MKL=true
@@ -39,7 +39,7 @@ for pkg in $pkgs; do
     branch=branches/main
 
     # some packages we special-case to tagged versions
-    if [[ $pkg == "QuasarNP" ]] ; then branch="0.2.0"; fi
+    ### if [[ $pkg == "QuasarNP" ]] ; then branch="0.2.0"; fi
     if [[ $pkg == "desitree" ]] ; then branch="0.7.0"; fi
     ### if [[ $pkg == "specex" ]] ; then branch="0.8.6"; fi
 
