@@ -1,9 +1,4 @@
-"""Smoke tests for jax on CPU and GPU.
-
-Note: jax/jaxlib are not currently listed in conf/conda-pkgs.sh, so
-test_jax_imports failing here reflects that gap in the environment, not
-necessarily a broken install.
-"""
+"""Smoke tests for jax on CPU and GPU."""
 import pytest
 
 
