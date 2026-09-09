@@ -7,9 +7,9 @@ if [[ -z "$DESICONDA" || -z "$DESICONDA_VERSION" ]]; then
     return
 fi
 
-# Install desiutil to get desiInstall script
+# Install desiutil from github to get latest desiInstall script
 # (will remove this later after installing the desiutil module)
-pip install desiutil
+pip install git+https://github.com/desihub/desiutil.git
 
 if [[ "${NERSC_HOST}" == "datatran" ]]; then
     # NERSC Data Transfer Nodes have minimal environment
