@@ -8,7 +8,11 @@ trap 'echo "ERROR installing pip packages (line $LINENO); exiting"; exit 1' ERR
 pip install hpsspy
 
 # See https://developer.nvidia.com/blog/cuda-python-1-0-stable-apis-one-foundation-full-platform-access/
-pip install cuda-python cuda-cccl numba numba-cuda-mlir[cu13] cupy-cuda13X
+# numba-cuda-mlir is installed bare (no [cu13] extra) so that it uses
+# cuda-pathfinder to find CUDA via NERSC's cudatoolkit module, same as
+# cupy-cuda13X; the [cu13]/[cu12] extras instead pull in a full pip-installed
+# cuda-toolkit (nvcc/cudart/nvrtc), which duplicates/conflicts with the module.
+pip install cuda-python cuda-cccl numba numba-cuda-mlir cupy-cuda13X
 
 pip install threadpoolctl
 
