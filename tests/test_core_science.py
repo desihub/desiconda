@@ -1,15 +1,35 @@
 """Smoke tests for numpy, scipy, astropy, and pandas: importable, and each
 can do one basic, correctness-checked computation."""
-import numpy as np
+import pytest
+
+
+def test_numpy_imports():
+    import numpy  # noqa: F401
+
+
+def test_scipy_imports():
+    import scipy  # noqa: F401
+
+
+def test_astropy_imports():
+    import astropy  # noqa: F401
+
+
+def test_pandas_imports():
+    import pandas  # noqa: F401
 
 
 def test_numpy_basic_computation():
+    np = pytest.importorskip("numpy")
+
     a = np.arange(10)
     assert a.sum() == 45
     assert np.isclose(np.linalg.norm([3, 4]), 5.0)
 
 
 def test_scipy_basic_computation():
+    np = pytest.importorskip("numpy")
+    pytest.importorskip("scipy")
     from scipy import integrate
 
     value, _ = integrate.quad(lambda x: x**2, 0, 1)
@@ -17,6 +37,8 @@ def test_scipy_basic_computation():
 
 
 def test_astropy_basic_computation():
+    np = pytest.importorskip("numpy")
+    pytest.importorskip("astropy")
     from astropy import units as u
     from astropy.coordinates import SkyCoord
 
@@ -26,7 +48,8 @@ def test_astropy_basic_computation():
 
 
 def test_pandas_basic_computation():
-    import pandas as pd
+    np = pytest.importorskip("numpy")
+    pd = pytest.importorskip("pandas")
 
     df = pd.DataFrame({"x": np.arange(5), "y": np.arange(5) * 2})
     assert df["y"].sum() == 20
@@ -34,7 +57,8 @@ def test_pandas_basic_computation():
 
 def test_pandas_numpy_interop():
     """Exercises the numpy<->pandas data path (dtype/ABI compatibility)."""
-    import pandas as pd
+    np = pytest.importorskip("numpy")
+    pd = pytest.importorskip("pandas")
 
     arr = np.random.default_rng(0).normal(size=100)
     s = pd.Series(arr)

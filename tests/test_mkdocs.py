@@ -4,12 +4,15 @@ import importlib.metadata
 import subprocess
 import sys
 
+import pytest
+
 
 def test_mkdocs_imports():
     import mkdocs  # noqa: F401
 
 
 def test_mkdocs_material_theme_registered():
+    pytest.importorskip("mkdocs")
     theme_names = {ep.name for ep in importlib.metadata.entry_points(group="mkdocs.themes")}
     assert "material" in theme_names, (
         "mkdocs-material is not registered as an mkdocs theme "
@@ -18,6 +21,7 @@ def test_mkdocs_material_theme_registered():
 
 
 def test_mkdocs_material_builds_site(tmp_path):
+    pytest.importorskip("mkdocs")
     docs_dir = tmp_path / "docs"
     docs_dir.mkdir()
     (docs_dir / "index.md").write_text("# Hello\n\nThis is a smoke-test page.\n")
