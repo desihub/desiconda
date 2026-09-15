@@ -16,6 +16,17 @@ set -o xtrace
 if [ -z $CONF ] ; then CONF=nersc;   fi
 if [ -z $PKGS ] ; then PKGS=default; fi
 
+# Determine if this is an installation at KPNO
+iskpno=false
+if [[ "$HOSTNAME" == "desi-7" ]] || [[ "$HOSTNAME" == "desi-8" ]]; then
+    if [ "$USER" == "datasystems" ]; then
+        iskpno=true
+    else
+        echo "At KPNO, must run as datasystems."
+        return
+    fi
+fi
+
 # Script directory
 pushd $(dirname $0) > /dev/null
 topdir=$(pwd)
@@ -49,9 +60,21 @@ mkdir -p $AUXDIR/lib
 mkdir -p $CONDADIR/bin
 mkdir -p $CONDADIR/lib
 
-curl -SL $MINICONDA \
-  -o miniconda.sh \
-  && /bin/bash miniconda.sh -b -f -p $CONDADIR
+# If at KPNO, use a manually downloaded copy of miniforge.
+if [ ${iskpno} == true ]; then
+    # Check for the presence of a miniforge installation.
+    if [[ -f "Miniforge3-Linux-x86_64.sh" ]]; then
+        /bin/bash Miniforge3-Linux-x86_64.sh -b -f -p $CONDADIR
+    else
+        echo "Download Miniforge3 from conda-forge.org/download and copy it here."
+        exit 1
+    fi
+# Otherwise, download miniconda (default outside of the KPNO firewall).
+else
+    curl -SL $MINICONDA \
+      -o miniconda.sh \
+      && /bin/bash miniconda.sh -b -f -p $CONDADIR
+fi
 
 source $CONDADIR/bin/activate
 export PYVERSION=$(python -c "import sys; print(str(sys.version_info[0])+'.'+str(sys.version_info[1]))")
