@@ -8,7 +8,11 @@ if [[ -z "$DESICONDA" || -z "$DESICONDA_VERSION" ]]; then
 fi
 
 # KPNO-specific installation interface:
-if [ $iskpno == true ]; then
+if [[ "$HOSTNAME" == "desi-7" ]] || [[ "$HOSTNAME" == "desi-8" ]]; then
+    if [ "$USER" != "datasystems" ]; then
+        echo "At KPNO, must run as datasystems."
+        exit 1
+
     usage() { echo "Usage: ${0} [-h] [-v] [-c filename.ini]" 1>&2; exit 1; }
 
     while getopts "hvc:" opt; do
