@@ -38,24 +38,26 @@ setenv PROJ_LIB _CONDADIR_/share/proj
 # but don't set automatically; leave it for srun --cpu-bind=cores opt-in
 # setenv SLURM_CPU_BIND cores
 
-# in case PrgEnv-_CONDAPRGENV_ is not loaded, swap it in
-setenv CRAYPE_LINK_TYPE dynamic
-if [ module-info mode load ] {
-  if [ is-loaded PrgEnv-_CONDAPRGENV_ ] {
-  } else {
-    if [ is-loaded PrgEnv-cray ] {
-      module swap PrgEnv-cray  PrgEnv-_CONDAPRGENV_
+# in case PrgEnv-_CONDAPRGENV_ is not loaded, swap it in (NERSC only)
+if { [info exists env(NERSC_HOST)] } {
+  setenv CRAYPE_LINK_TYPE dynamic
+  if [ module-info mode load ] {
+    if [ is-loaded PrgEnv-_CONDAPRGENV_ ] {
+    } else {
+      if [ is-loaded PrgEnv-cray ] {
+        module swap PrgEnv-cray  PrgEnv-_CONDAPRGENV_
+      }
+      if [ is-loaded PrgEnv-intel ] {
+        module swap PrgEnv-intel PrgEnv-_CONDAPRGENV_
+      }
+      if [ is-loaded PrgEnv-gnu ] {
+        module swap PrgEnv-gnu   PrgEnv-_CONDAPRGENV_
+      }
     }
-    if [ is-loaded PrgEnv-intel ] {
-      module swap PrgEnv-intel PrgEnv-_CONDAPRGENV_
-    }
-    if [ is-loaded PrgEnv-gnu ] {
-      module swap PrgEnv-gnu   PrgEnv-_CONDAPRGENV_
-    }
+    module unload darshan            # not necessary and suspected to generate overhead
+    module unload altd               # not necessary and suspected to cause random job hangs
+    module unload craype-hugepages2M # https://docs.nersc.gov/development/languages/python/faq-troubleshooting
   }
-  module unload darshan            # not necessary and suspected to generate overhead
-  module unload altd               # not necessary and suspected to cause random job hangs
-  module unload craype-hugepages2M # https://docs.nersc.gov/development/languages/python/faq-troubleshooting
 }
 
 ### Removed 2026-02-24; conflicts with lmod update Feb 2024
