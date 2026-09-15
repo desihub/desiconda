@@ -12,19 +12,20 @@ if [[ "$HOSTNAME" == "desi-7" ]] || [[ "$HOSTNAME" == "desi-8" ]]; then
     if [ "$USER" != "datasystems" ]; then
         echo "At KPNO, must run as datasystems."
         exit 1
+    fi
 
     usage() { echo "Usage: ${0} [-h] [-v] [-c filename.ini]" 1>&2; exit 1; }
 
     while getopts "hvc:" opt; do
         case ${opt} in
-            h | *)
-               usage
-               ;;
             v)
                set -x # print commands as they are run
                ;;
             c)
                configfile=${OPTARG}
+               ;;
+            h | *)
+               usage
                ;;
         esac
     done
