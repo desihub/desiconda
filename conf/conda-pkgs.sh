@@ -24,7 +24,7 @@ echo condadir is $CONDADIR
 #   - Added ipympl for interactive plotting in jupyter
 
 conda install --copy --yes -c conda-forge \
-    "astropy<6.1" \
+    astropy \
     fitsio \
     fitsverify \
     "libblas=*=*_openblas" \
