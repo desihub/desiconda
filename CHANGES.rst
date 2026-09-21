@@ -2,15 +2,23 @@
 desiconda Change Log
 ====================
 
-2.3.2 (unreleased)
+3.1.0 (unreleased)
+------------------
+
+* No changes yet.
+
+3.1.0 (2026-09-21)
 ------------------
 
 * Remove unnecessary setting of ``PYTHONPATH`` which conflicts with system
   Python tools, e.g. ``podman-hpc`` issue `#87`_.
 * Add ``conf/fast-pkgs.sh`` (``PKGS=fast``), a minimal package set for
   quickly iterating on ``install.sh`` without the full dependency list.
+* Update packages for Nevis including python/3.14, astropy/8.x, jax, pytorch,
+  and updating how cuda/cupy is installed (PR `#90`_).
 
 .. _`#87`: https://github.com/desihub/desiconda/issues/87
+.. _`#90`: https://github.com/desihub/desiconda/pull/90
 
 2.3.1 (2026-08-10)
 ------------------
