@@ -32,6 +32,22 @@ INSTALLPKGS=$CONFDIR/$PKGS-pkgs.sh
 # Initialize environment
 source $CONFIGUREENV
 
+# Check required environment variables
+if [ -z "$PREFIX" ] ; then
+    echo "ERROR: \$PREFIX is not set; e.g. PREFIX=/path/to/software $fullscript"
+    exit 1
+fi
+
+if [ ! -d "$PREFIX" ] ; then
+    echo "ERROR: \$PREFIX ($PREFIX) does not exist or is not a directory"
+    exit 1
+fi
+
+if [ -z "$DCONDAVERSION" ] ; then
+    echo "ERROR: \$DCONDAVERSION is not set; e.g. DCONDAVERSION=$(date '+%Y%m%d')-2.0.1.dev $fullscript"
+    exit 1
+fi
+
 # Set installation directories
 DESICONDA=$PREFIX/$DCONDAVERSION
 CONDADIR=$DESICONDA/conda

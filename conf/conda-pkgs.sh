@@ -22,6 +22,9 @@ echo condadir is $CONDADIR
 #   - Added pytest-xdist for pytest parallelism
 #   - Added setuptools-scm to support desiInstall speclite and specsim (desiutil #227)
 #   - Added ipympl for interactive plotting in jupyter
+# - Changes August 2026:
+#   - Moved numba, numba-cuda, and cupy-core to pip to avoid bringing in deps already in NERSC cudatoolkit
+#   - Added jax and pytorch
 
 conda install --copy --yes -c conda-forge \
     astropy \
@@ -56,8 +59,6 @@ conda install --copy --yes -c conda-forge \
     pytest \
     pytest-cov \
     pytest-xdist \
-    numba \
-    numba-cuda \
     sqlalchemy \
     scikit-learn \
     scikit-image \
@@ -70,7 +71,6 @@ conda install --copy --yes -c conda-forge \
     sphinx \
     sphinx_rtd_theme \
     iminuit \
-    cupy-core \
     healpy \
     photutils \
     specutils \
@@ -86,6 +86,8 @@ conda install --copy --yes -c conda-forge \
     vega_datasets \
     conda-tree \
     setuptools-scm \
+    jax \
+    pytorch\
 && mplrc="$CONDADIR/lib/python$PYVERSION/site-packages/matplotlib/mpl-data/matplotlibrc"; \
     cat ${mplrc} | sed -e "s#^backend.*#backend : TkAgg#" > ${mplrc}.tmp; \
     mv ${mplrc}.tmp ${mplrc} \
